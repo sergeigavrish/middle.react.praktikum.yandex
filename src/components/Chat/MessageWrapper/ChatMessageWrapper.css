@@ -1,0 +1,6 @@
+@import '../../../styles/variables.css';
+
+.message-wrap {
+  padding: 0 var(--spacing-large);
+  margin: var(--spacing-small) var(--spacing-base) var(--spacing-small) var(--spacing-large);
+}
