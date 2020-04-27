@@ -1,0 +1,14 @@
+@import "../../../styles/variables.css";
+@import "../../../styles/colors.css";
+
+.service-message {
+  padding: var(--spacing-smallest) var(--spacing-small);
+  margin: var(--spacing-double) 0 var(--spacing-half) 0;
+}
+
+.service-message__date {
+  display: inline-block;
+  background-color: var(--service-message-background-color);
+  padding: var(--spacing-half) var(--spacing-base);
+  border-radius: var(--spacing-large);
+}
