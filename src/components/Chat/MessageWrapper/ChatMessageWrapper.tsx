@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { ReactNode, FunctionComponent } from 'react';
 
 import './ChatMessageWrapper.css';
 
 interface ChatMessageWrapperProps {
   className?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-const ChatMessageWrapper: React.FunctionComponent<ChatMessageWrapperProps> = ({
+const ChatMessageWrapper: FunctionComponent<ChatMessageWrapperProps> = ({
   className,
   children,
 }: ChatMessageWrapperProps) => (
