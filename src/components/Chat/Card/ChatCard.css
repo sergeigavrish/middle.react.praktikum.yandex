@@ -1,5 +1,5 @@
-@import '../../../styles/variables.css';
-@import '../../../styles/colors.css';
+@import "../../../styles/variables.css";
+@import "../../../styles/colors.css";
 
 .card {
   width: 360px;
@@ -10,61 +10,61 @@
   background-color: var(--selected-chat-background-color);
 }
 
-.card__wrapper {
+.card-wrap {
   width: 100%;
 }
 
-.card__wrapper__body {
+.card__body {
   display: flex;
 }
 
-.card__wrapper__body__logo {
+.card__logo {
   width: 20%;
-  padding: var(--padding);
-  padding-bottom: var(--big-padding);
+  padding: var(--spacing-half);
+  padding-bottom: var(--spacing-large);
 }
 
-.card__wrapper__body__content {
+.card__info {
   width: 80%;
   display: flex;
   flex-direction: column;
 }
 
-.card__wrapper__body__content_top,
-.card__wrapper__body__content_bottom {
+.card__info__top,
+.card__info__bottom {
   height: 50%;
   display: flex;
 }
 
-.card__wrapper__body__content_top {
+.card__info__top {
   justify-content: space-between;
   align-items: flex-end;
-  padding-bottom: var(--small-padding);
+  padding-bottom: var(--spacing-smallest);
 }
 
-.card__wrapper__body__content_top__name,
-.card__wrapper__body__content_bottom__message {
+.card__info__top__name,
+.card__info__bottom__message {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.card__wrapper__body__content_top__name {
+.card__info__top__name {
   left: 0;
   font-weight: 600;
 }
 
-.card__wrapper__body__content_top__message-date {
+.card__info__top__date {
   right: 0;
   padding-right: 10px;
   opacity: 0.5;
 }
 
-.card__wrapper__body__content_bottom__author {
+.card__info__bottom__author {
   color: var(--chat-info-author);
   white-space: nowrap;
 }
 
-.card__wrapper__body__content_bottom__message {
-  padding-left: var(--small-padding);
+.card__info__bottom__message {
+  padding-left: var(--spacing-smallest);
 }
