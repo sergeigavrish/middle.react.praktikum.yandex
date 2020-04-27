@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
+
+import './Avatar.css';
 
 interface Props {
   src: string;
-  alt: string;
   className: string;
+  alt?: string;
 }
 
-const Avatar: React.FunctionComponent<Props> = ({ className, src, alt }: Props) => (
+const Avatar: FunctionComponent<Props> = ({ className, src, alt }: Props) => (
   <div className={className}>
     <img src={src} alt={alt} />
   </div>
 );
+
+Avatar.defaultProps = {
+  alt: 'Avatar',
+};
 
 export default Avatar;
