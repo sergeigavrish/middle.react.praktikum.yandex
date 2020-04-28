@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 
 import { AvatarProps } from './AvatarProps';
 
-import resources from '../../resources';
+import resources from '../../models/constants/resources';
 
 import './Avatar.css';
 

@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-export interface ChatMessageWrapperProps {
+export interface IChatMessageWrapperProps {
   className?: string;
   children: ReactNode;
 }

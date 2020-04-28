@@ -1,11 +1,12 @@
 import { v4 as uuid } from 'uuid';
 
 import { IChatCardProps } from '../components/Chat/Card/IChatCardProps';
-import { IChatInfo } from '../models/ichat-info';
-import { IHashTable } from '../models/ihash-table';
-import { IUser } from '../models/iuser';
-import { IMessage, MessageList } from '../models/imessage';
-import { MessageTypes } from '../models/messageTypes';
+import { IChatInfo } from '../models/interfaces/ichat-info';
+import { IHashTable } from '../models/interfaces/ihash-table';
+import { IUser } from '../models/interfaces/iuser';
+import { IMessage } from '../models/interfaces/imessage';
+import { MessageTypes } from '../models/enums/MessageTypes';
+import { MessageList } from '../models/types/MessageList';
 
 import dateHelper from './dateHelper';
 

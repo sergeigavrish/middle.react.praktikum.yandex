@@ -1,9 +1,9 @@
 import { v4 as uuid } from 'uuid';
 
-import { IUser } from '../models/iuser';
-import { IChatInfo } from '../models/ichat-info';
-import { IMessage } from '../models/imessage';
-import { IHashTable } from '../models/ihash-table';
+import { IUser } from '../models/interfaces/iuser';
+import { IChatInfo } from '../models/interfaces/ichat-info';
+import { IMessage } from '../models/interfaces/imessage';
+import { IHashTable } from '../models/interfaces/ihash-table';
 
 import logo from '../logo.svg';
 

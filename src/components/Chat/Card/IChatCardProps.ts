@@ -1,6 +1,6 @@
-import { IChatInfo } from '../../../models/ichat-info';
-import { IMessage } from '../../../models/imessage';
-import { IUser } from '../../../models/iuser';
+import { IChatInfo } from '../../../models/interfaces/ichat-info';
+import { IMessage } from '../../../models/interfaces/imessage';
+import { IUser } from '../../../models/interfaces/iuser';
 
 export interface IChatCardProps {
   selected: boolean;

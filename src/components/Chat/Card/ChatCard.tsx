@@ -5,7 +5,7 @@ import { Avatar } from '../../../shared/Avatar/Avatar';
 import { IChatCardPropsWithHandlers } from './IChatCardProps';
 
 import dateHelper from '../../../helpers/dateHelper';
-import resources from '../../../resources';
+import resources from '../../../models/constants/resources';
 
 import './ChatCard.css';
 

@@ -1,5 +1,5 @@
 import { IUser } from './iuser';
-import { MessageTypes } from './messageTypes';
+import { MessageTypes } from '../enums/MessageTypes';
 
 export interface IMessageBase {
   guid: string;
@@ -20,5 +20,3 @@ export interface IMessageWithAuthor extends IMessageBase {
 export interface IServiceMessage extends IMessageBase {
   type: MessageTypes.Service;
 }
-
-export type MessageList = Array<IServiceMessage | IMessageWithAuthor>;

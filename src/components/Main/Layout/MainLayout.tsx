@@ -3,23 +3,13 @@ import React, { Component } from 'react';
 import { ChatHistory } from '../../Chat/History/ChatHistory';
 import { ChatList } from '../../Chat/List/ChatList';
 
-import { IChatInfo } from '../../../models/ichat-info';
-import { IUser } from '../../../models/iuser';
-import { IMessage } from '../../../models/imessage';
-import { IHashTable } from '../../../models/ihash-table';
+import { IMainLayoutState } from '../IMainLayoutState';
 
 import mapperHelper from '../../../helpers/mapperHelper';
 import sortHelper from '../../../helpers/sortHelper';
 import mockStateAssembler from '../../../helpers/mockStateAssembler';
 
 import './MainLayout.css';
-
-interface IMainLayoutState {
-  selectedChat: null | string;
-  chats: IHashTable<IChatInfo>;
-  users: IHashTable<IUser>;
-  messages: IHashTable<IMessage[]>;
-}
 
 export class MainLayout extends Component<{}, IMainLayoutState> {
   constructor(props = {}) {

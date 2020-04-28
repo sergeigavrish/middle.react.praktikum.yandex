@@ -1,15 +1,15 @@
 import React, { FunctionComponent } from 'react';
 
-import { ChatMessageWrapperProps } from './ChatMessageWrapperProps';
+import { IChatMessageWrapperProps } from './IChatMessageWrapperProps';
 
-import resources from '../../../resources';
+import resources from '../../../models/constants/resources';
 
 import './ChatMessageWrapper.css';
 
-export const ChatMessageWrapper: FunctionComponent<ChatMessageWrapperProps> = ({
+export const ChatMessageWrapper: FunctionComponent<IChatMessageWrapperProps> = ({
   className = resources.chat.messages.messageWrap,
   children,
-}: ChatMessageWrapperProps) => (
+}: IChatMessageWrapperProps) => (
   <div className={className}>
     {children}
   </div>
