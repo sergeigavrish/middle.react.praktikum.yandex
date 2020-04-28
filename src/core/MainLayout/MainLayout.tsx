@@ -1,4 +1,4 @@
-import React, { SyntheticEvent } from 'react';
+import React, { SyntheticEvent, Component } from 'react';
 
 import './MainLayout.css';
 import { IChatInfo } from '../../models/ichat-info';
@@ -8,6 +8,7 @@ import mockStateAssembler from '../../helpers/mockStateAssembler';
 import mapperHelper from '../../helpers/mapperHelper';
 import ChatList from '../../components/Chat/List/ChatList';
 import { IHashTable } from '../../models/ihash-table';
+import ChatHistory from '../../components/Chat/History/ChatHistory';
 
 interface IMainLayoutState {
   selectedChat: null | string;
@@ -16,7 +17,7 @@ interface IMainLayoutState {
   messages: IHashTable<IMessage[]>;
 }
 
-export default class MainLayout extends React.Component<{}, IMainLayoutState> {
+export default class MainLayout extends Component<{}, IMainLayoutState> {
   constructor(props = {}) {
     super(props);
     this.state = {
@@ -36,32 +37,41 @@ export default class MainLayout extends React.Component<{}, IMainLayoutState> {
     });
   }
 
-  onChatSelected = (e: SyntheticEvent<HTMLElement, MouseEvent>) => {
+  private onChatSelected = (e: SyntheticEvent<HTMLElement, MouseEvent>) => {
     this.setState({
       selectedChat: e.currentTarget.dataset.guid as string,
     });
   }
 
-  render() {
+  private getMessageList() {
+    const { selectedChat, messages, users } = this.state;
+    const selectedChatMessages = selectedChat ? messages[selectedChat] : [];
+    return mapperHelper.mapMessageToMessageWithAuthor(selectedChatMessages, users);
+  }
+
+  private getChatList() {
     const {
-      chats,
-      users,
-      messages,
-      selectedChat,
+      chats, users,
+      messages, selectedChat,
     } = this.state;
-    const props = mapperHelper.mapChatInfoToChatCardProps(
-      chats,
-      users,
-      messages,
-      selectedChat,
+    return mapperHelper.mapChatInfoToChatCardProps(
+      chats, users,
+      messages, selectedChat,
       this.onChatSelected,
     );
+  }
+
+  render() {
+    const chatList = this.getChatList();
+    const messageList = this.getMessageList();
     return (
       <main className="layout">
         <aside className="layout__sidebar">
-          <ChatList chats={props} />
+          <ChatList chatList={chatList} />
         </aside>
-        <div className="layout__content" />
+        <div className="layout__content">
+          <ChatHistory messageList={messageList} />
+        </div>
       </main>
     );
   }

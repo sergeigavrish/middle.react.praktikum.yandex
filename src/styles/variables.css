@@ -1,9 +1,12 @@
 :root {
-  --padding: 5px;
-  --small-padding: 3px;
-  --big-padding: calc(var(--padding) * 3);
-  --layout-padding: calc(var(--padding) * 7);
-  --layout-border-small: 2px solid #e6e6e6;
+  --spacing-smallest: 4px;
+  --spacing-half: 5px;
+  --spacing-small: 8px;
+  --spacing-base: 10px;
+  --spacing-large: 15px;
+  --spacing-double: 20px;
+  --spacing-largest: 35px;
+  --border-small: 3px solid #e6e6e6;
 }
 
 .button-reset {
