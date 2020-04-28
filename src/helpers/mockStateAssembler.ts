@@ -1,10 +1,10 @@
 import { v4 as uuid } from 'uuid';
-import { IUser } from '../models/iuser';
+
 import logo from '../logo.svg';
+import mockStateDictionary from './mockStateDictionary';
+import { IUser } from '../models/iuser';
 import { IChatInfo } from '../models/ichat-info';
 import { IMessage } from '../models/imessage';
-import mockStateDictionary from './mockStateDictionary';
-
 
 function randomInteger(max: number) {
   const rand = 1 + Math.random() * (max);
@@ -33,34 +33,51 @@ function messagesFactory(contentStorage: string[], authorIds: string[]): IMessag
   return messages;
 }
 
+function storageAssembler<T>(keys: string[], factory: (k: string, i: number) => T) {
+  return keys.reduce((acc, key, i) => {
+    acc[key] = factory(key, i);
+    return acc;
+  }, {} as { [key: string]: T });
+}
+
+function userFactoryWrapper(usernames: string[]) {
+  return (guid: string, index: number) => ({
+    guid,
+    name: usernames[index],
+    avatar: logo,
+  });
+}
+
+function chatInfoFactoryWrapper(chatNames: string[]) {
+  return (guid: string, index: number) => ({
+    guid,
+    name: chatNames[index],
+    logo,
+  });
+}
+
+function messagesFactoryWrapper(messages: string[], users: string[]) {
+  return () => messagesFactory(messages, users);
+}
+
 function assembleMockState() {
-  const userStorage = mockStateDictionary.usernames.reduce((acc, name) => {
-    const userId = uuid();
-    acc[userId] = {
-      guid: userId,
-      name,
-      avatar: logo,
-    };
-    return acc;
-  }, {} as { [userId: string]: IUser });
-  const chatStorage = mockStateDictionary.chatNames.reduce((acc, name) => {
-    const chatId = uuid();
-    acc[chatId] = {
-      guid: chatId,
-      name,
-      logo,
-    };
-    return acc;
-  }, {} as { [chatId: string]: IChatInfo });
-  const messageStorage = Object.keys(chatStorage).reduce((acc, key) => {
-    acc[key] = messagesFactory(mockStateDictionary.message, Object.keys(userStorage));
-    return acc;
-  }, {} as { [chatId: string]: IMessage[] });
-  return {
+  const userStorage = storageAssembler<IUser>(
+    mockStateDictionary.usernames.map(() => uuid()),
+    userFactoryWrapper(mockStateDictionary.usernames),
+  );
+  const chatStorage = storageAssembler<IChatInfo>(
+    mockStateDictionary.usernames.map(() => uuid()),
+    chatInfoFactoryWrapper(mockStateDictionary.chatNames),
+  );
+  const messageStorage = storageAssembler<IMessage[]>(
+    Object.keys(chatStorage),
+    messagesFactoryWrapper(mockStateDictionary.message, Object.keys(userStorage)),
+  );
+  return () => ({
     userStorage,
     chatStorage,
     messageStorage,
-  };
+  });
 }
 
-export default assembleMockState;
+export default assembleMockState();
