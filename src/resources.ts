@@ -1,8 +1,14 @@
 const resources = {
   chat: {
-    cardIcon: 'Chat icon',
-    messageAuthor: 'Author avatar',
-    serviceMessage: 'service-message',
+    avatar: {
+      cardIcon: 'Chat icon',
+      messageAuthor: 'Author avatar',
+      default: 'Avatar',
+    },
+    messages: {
+      serviceMessage: 'service-message',
+      messageWrap: 'message-wrap',
+    },
   },
 };
 

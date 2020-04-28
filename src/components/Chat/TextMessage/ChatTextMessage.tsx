@@ -14,7 +14,7 @@ const ChatTextMessage: FunctionComponent<IMessageWithAuthor> = ({
 }: IMessageWithAuthor) => (
   <ChatMessageWrapper>
     <section style={{ position: 'relative' }} className="message">
-      <Avatar className="message__icon" src={author.avatar} alt={resources.chat.messageAuthor} />
+      <Avatar className="message__icon" src={author.avatar} alt={resources.chat.avatar.messageAuthor} />
       <div className="message__body">
         <span className="message__author">{author.name}</span>
         <div className="message__content">
