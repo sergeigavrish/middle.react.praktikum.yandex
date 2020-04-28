@@ -1,5 +1,3 @@
-import { SyntheticEvent } from 'react';
-
 import { v4 as uuid } from 'uuid';
 
 import { IChatInfo } from '../models/ichat-info';
@@ -15,7 +13,6 @@ const mapChatInfoToChatCardProps = (
   users: IHashTable<IUser>,
   messages: IHashTable<IMessage[]>,
   selected: string | null,
-  onChatSelected: (e: SyntheticEvent<HTMLElement, MouseEvent>) => void,
 ): IChatCardProps[] => Object
   .keys(chats)
   .map((chatId) => {
@@ -28,7 +25,6 @@ const mapChatInfoToChatCardProps = (
       lastMessage,
       author,
       selected: selected === chat.guid,
-      onChatSelected,
     };
   });
 
@@ -37,7 +33,7 @@ const mapMessageToMessageWithAuthor = (
   users: IHashTable<IUser>,
 ): MessageList => {
   const dateSet: Set<number> = new Set();
-  return messageList.reduce((acc, m) => {
+  return messageList.reduce((acc: MessageList, m) => {
     const timestamp = dateHelper.removeTimeFromTimestamp(m.timestamp);
     if (!dateSet.has(timestamp)) {
       dateSet.add(timestamp);
@@ -55,7 +51,7 @@ const mapMessageToMessageWithAuthor = (
       type: MessageTypes.Text,
     });
     return acc;
-  }, [] as MessageList);
+  }, []);
 };
 
 const mapperHelper = {

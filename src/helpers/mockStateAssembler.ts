@@ -33,11 +33,11 @@ function messagesFactory(contentStorage: string[], authorIds: string[]): IMessag
   return messages;
 }
 
-function storageAssembler<T>(keys: string[], factory: (k: string, i: number) => T) {
-  return keys.reduce((acc, key, i) => {
+function storageAssembler<T>(keys: string[], factory: (k: string, i: number) => T): IHashTable<T> {
+  return keys.reduce((acc: IHashTable<T>, key, i) => {
     acc[key] = factory(key, i);
     return acc;
-  }, {} as IHashTable<T>);
+  }, {});
 }
 
 function userFactoryWrapper(usernames: string[]) {
@@ -61,11 +61,12 @@ function messagesFactoryWrapper(messages: string[], users: string[]) {
 }
 
 function mockStateAssembler() {
-  let userStorage: IHashTable<IUser> | null = null;
-  let chatStorage: IHashTable<IChatInfo> | null = null;
-  let messageStorage: IHashTable<IMessage[]> | null = null;
+  let userStorage: IHashTable<IUser>;
+  let chatStorage: IHashTable<IChatInfo>;
+  let messageStorage: IHashTable<IMessage[]>;
   return async () => {
-    if (!(userStorage && chatStorage && messageStorage)) {
+    const isInitialized = !!(userStorage && chatStorage && messageStorage);
+    if (!isInitialized) {
       const dictionary = await import('./mockStateDictionary.json');
       userStorage = storageAssembler<IUser>(
         dictionary.usernames.map(() => uuid()),
@@ -87,7 +88,5 @@ function mockStateAssembler() {
     };
   };
 }
-
-// (window as any)['mock'] = mockStateAssembler;
 
 export default mockStateAssembler();

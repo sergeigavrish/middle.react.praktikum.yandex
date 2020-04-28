@@ -1,48 +1,31 @@
-enum LocaleStringFormats {
-  short = 'short',
-  numeric = 'numeric'
-}
-
 const formatUnit = (n: number) => {
   return n >= 10 ? n : `0${n}`;
 };
 
-const parseDate = (d: Date | number) => {
+const getDate = (d: Date | number) => {
   const date = new Date(d);
-  return {
-    day: formatUnit(date.getDate()),
-    month: formatUnit(date.getMonth() + 1),
-    year: formatUnit(date.getFullYear()),
-    hours: formatUnit(date.getHours()),
-    minutes: formatUnit(date.getMinutes()),
-    seconds: formatUnit(date.getSeconds()),
-  };
-};
-
-const getDate = (date: Date | number) => {
-  const { day, month, year } = parseDate(date);
+  const day = formatUnit(date.getDate());
+  const month = formatUnit(date.getMonth() + 1);
+  const year = formatUnit(date.getFullYear());
   return `${day}/${month}/${year}`;
 };
 
-const getTime = (date: Date | number) => {
-  const { hours, minutes, seconds } = parseDate(date);
+const getTime = (d: Date | number) => {
+  const date = new Date(d);
+  const hours = formatUnit(date.getHours());
+  const minutes = formatUnit(date.getMinutes());
+  const seconds = formatUnit(date.getSeconds());
   return `${hours}:${minutes}:${seconds}`;
 };
 
 const removeTimeFromTimestamp = (d: number | Date) => {
   const date = new Date(d);
-  return new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime();
+  return date.setHours(0, 0, 0, 0);
 };
 
 const getServiceMessage = (d: number | Date) => {
   const date = new Date(d);
-  const message = date.toLocaleString('default', {
-    weekday: LocaleStringFormats.short,
-    month: LocaleStringFormats.short,
-    day: LocaleStringFormats.numeric,
-    year: LocaleStringFormats.numeric,
-  });
-  return message.replace(/,/g, '');
+  return date.toDateString();
 };
 
 const dateHelper = {
