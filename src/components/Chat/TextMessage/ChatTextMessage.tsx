@@ -1,13 +1,14 @@
 import React, { FunctionComponent } from 'react';
-import ChatMessageWrapper from '../MessageWrapper/ChatMessageWrapper';
 
-import './ChatTextMessage.css';
-import Avatar from '../../../shared/Avatar/Avatar';
-import resources from '../../../resources';
 import { IMessageWithAuthor } from '../../../models/imessage';
+import { Avatar } from '../../../shared/Avatar/Avatar';
+import { ChatMessageWrapper } from '../MessageWrapper/ChatMessageWrapper';
+import resources from '../../../resources';
 import dateHelper from '../../../helpers/dateHelper';
 
-const ChatTextMessage: FunctionComponent<IMessageWithAuthor> = ({
+import './ChatTextMessage.css';
+
+export const ChatTextMessage: FunctionComponent<IMessageWithAuthor> = ({
   author,
   content,
   timestamp,
@@ -27,6 +28,3 @@ const ChatTextMessage: FunctionComponent<IMessageWithAuthor> = ({
     </section>
   </ChatMessageWrapper>
 );
-
-
-export default ChatTextMessage;
