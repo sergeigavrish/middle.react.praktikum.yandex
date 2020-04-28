@@ -1,7 +1,9 @@
 import React, { FunctionComponent } from 'react';
 
 import { Avatar } from '../../../shared/Avatar/Avatar';
+
 import { IChatCardPropsWithHandlers } from './IChatCardProps';
+
 import dateHelper from '../../../helpers/dateHelper';
 import resources from '../../../resources';
 

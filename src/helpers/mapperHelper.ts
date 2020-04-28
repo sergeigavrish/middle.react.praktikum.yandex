@@ -1,11 +1,12 @@
 import { v4 as uuid } from 'uuid';
 
+import { IChatCardProps } from '../components/Chat/Card/IChatCardProps';
 import { IChatInfo } from '../models/ichat-info';
 import { IHashTable } from '../models/ihash-table';
 import { IUser } from '../models/iuser';
 import { IMessage, MessageList } from '../models/imessage';
-import { IChatCardProps } from '../components/Chat/Card/IChatCardProps';
 import { MessageTypes } from '../models/messageTypes';
+
 import dateHelper from './dateHelper';
 
 const mapChatInfoToChatCardProps = (

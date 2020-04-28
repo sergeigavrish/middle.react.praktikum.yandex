@@ -1,9 +1,10 @@
 import React, { FunctionComponent } from 'react';
 
-import { MessageTypes } from '../../../models/messageTypes';
-import { ChatHistoryProps } from './ChatHistoryProps';
 import { ChatServiceMessage } from '../ServiceMessage/ChatServiceMessage';
 import { ChatTextMessage } from '../TextMessage/ChatTextMessage';
+
+import { ChatHistoryProps } from './ChatHistoryProps';
+import { MessageTypes } from '../../../models/messageTypes';
 
 import './ChatHistory.css';
 

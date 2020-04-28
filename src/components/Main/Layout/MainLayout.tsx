@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 
+import { ChatHistory } from '../../Chat/History/ChatHistory';
+import { ChatList } from '../../Chat/List/ChatList';
+
 import { IChatInfo } from '../../../models/ichat-info';
 import { IUser } from '../../../models/iuser';
 import { IMessage } from '../../../models/imessage';
 import { IHashTable } from '../../../models/ihash-table';
-import { ChatHistory } from '../../Chat/History/ChatHistory';
-import { ChatList } from '../../Chat/List/ChatList';
-import mockStateAssembler from '../../../helpers/mockStateAssembler';
+
 import mapperHelper from '../../../helpers/mapperHelper';
+import sortHelper from '../../../helpers/sortHelper';
+import mockStateAssembler from '../../../helpers/mockStateAssembler';
 
 import './MainLayout.css';
-import sortHelper from '../../../helpers/sortHelper';
 
 interface IMainLayoutState {
   selectedChat: null | string;

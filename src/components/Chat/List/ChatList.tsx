@@ -1,7 +1,8 @@
 import React, { FunctionComponent } from 'react';
 
-import { IChatListProps } from './IChatListProps';
 import { ChatCard } from '../Card/ChatCard';
+
+import { IChatListProps } from './IChatListProps';
 
 export const ChatList: FunctionComponent<IChatListProps> = ({ chatList, onChatSelected }: IChatListProps) => (
   <section>

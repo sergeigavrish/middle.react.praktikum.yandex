@@ -1,10 +1,11 @@
 import { v4 as uuid } from 'uuid';
 
-import logo from '../logo.svg';
 import { IUser } from '../models/iuser';
 import { IChatInfo } from '../models/ichat-info';
 import { IMessage } from '../models/imessage';
 import { IHashTable } from '../models/ihash-table';
+
+import logo from '../logo.svg';
 
 function randomInteger(max: number) {
   const rand = 1 + Math.random() * (max);

@@ -1,7 +1,8 @@
 import React, { FunctionComponent } from 'react';
 
-import resources from '../../resources';
 import { AvatarProps } from './AvatarProps';
+
+import resources from '../../resources';
 
 import './Avatar.css';
 

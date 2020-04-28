@@ -1,7 +1,9 @@
 import React, { FunctionComponent } from 'react';
 
-import { IServiceMessage } from '../../../models/imessage';
 import { ChatMessageWrapper } from '../MessageWrapper/ChatMessageWrapper';
+
+import { IServiceMessage } from '../../../models/imessage';
+
 import dateHelper from '../../../helpers/dateHelper';
 import resources from '../../../resources';
 

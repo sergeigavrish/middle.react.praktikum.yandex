@@ -1,8 +1,10 @@
 import React, { FunctionComponent } from 'react';
 
-import { IMessageWithAuthor } from '../../../models/imessage';
 import { Avatar } from '../../../shared/Avatar/Avatar';
 import { ChatMessageWrapper } from '../MessageWrapper/ChatMessageWrapper';
+
+import { IMessageWithAuthor } from '../../../models/imessage';
+
 import resources from '../../../resources';
 import dateHelper from '../../../helpers/dateHelper';
 

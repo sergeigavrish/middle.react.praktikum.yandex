@@ -1,7 +1,8 @@
 import React, { FunctionComponent } from 'react';
 
-import resources from '../../../resources';
 import { ChatMessageWrapperProps } from './ChatMessageWrapperProps';
+
+import resources from '../../../resources';
 
 import './ChatMessageWrapper.css';
 
