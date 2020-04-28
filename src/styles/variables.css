@@ -1,0 +1,16 @@
+:root {
+  --spacing-smallest: 4px;
+  --spacing-half: 5px;
+  --spacing-small: 8px;
+  --spacing-base: 10px;
+  --spacing-large: 15px;
+  --spacing-double: 20px;
+  --spacing-largest: 35px;
+  --border-small: 3px solid #e6e6e6;
+}
+
+.button-reset {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}

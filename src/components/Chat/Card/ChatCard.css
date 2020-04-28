@@ -1,0 +1,70 @@
+@import "../../../styles/variables.css";
+@import "../../../styles/colors.css";
+
+.card {
+  width: 360px;
+  height: 80px;
+}
+
+.card.selected {
+  background-color: var(--selected-chat-background-color);
+}
+
+.card-wrap {
+  width: 100%;
+}
+
+.card__body {
+  display: flex;
+}
+
+.card__logo {
+  width: 20%;
+  padding: var(--spacing-half);
+  padding-bottom: var(--spacing-large);
+}
+
+.card__info {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card__info__top,
+.card__info__bottom {
+  height: 50%;
+  display: flex;
+}
+
+.card__info__top {
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: var(--spacing-smallest);
+}
+
+.card__info__top__name,
+.card__info__bottom__message {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card__info__top__name {
+  left: 0;
+  font-weight: 600;
+}
+
+.card__info__top__date {
+  right: 0;
+  padding-right: 10px;
+  opacity: 0.5;
+}
+
+.card__info__bottom__author {
+  color: var(--chat-info-author);
+  white-space: nowrap;
+}
+
+.card__info__bottom__message {
+  padding-left: var(--spacing-smallest);
+}
