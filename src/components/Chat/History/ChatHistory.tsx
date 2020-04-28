@@ -1,17 +1,13 @@
 import React, { FunctionComponent } from 'react';
 
-import { MessageList } from '../../../models/imessage';
-import ChatTextMessage from '../TextMessage/ChatTextMessage';
 import { MessageTypes } from '../../../models/messageTypes';
-import ChatServiceMessage from '../ServiceMessage/ChatServiceMessage';
+import { ChatHistoryProps } from './ChatHistoryProps';
+import { ChatServiceMessage } from '../ServiceMessage/ChatServiceMessage';
+import { ChatTextMessage } from '../TextMessage/ChatTextMessage';
 
 import './ChatHistory.css';
 
-interface Props {
-  messageList: MessageList;
-}
-
-const ChatHistory: FunctionComponent<Props> = ({ messageList }: Props) => (
+export const ChatHistory: FunctionComponent<ChatHistoryProps> = ({ messageList }: ChatHistoryProps) => (
   <div className="message-history">
     {messageList.map((message) => {
       switch (message.type) {
@@ -24,5 +20,3 @@ const ChatHistory: FunctionComponent<Props> = ({ messageList }: Props) => (
     })}
   </div>
 );
-
-export default ChatHistory;
