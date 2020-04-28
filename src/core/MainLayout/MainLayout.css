@@ -9,7 +9,7 @@
 }
 
 .layout__sidebar {
-  width: 390px;
+  width: 380px;
   height: 100%;
   overflow: auto;
   background-color: var(--default-background-color);

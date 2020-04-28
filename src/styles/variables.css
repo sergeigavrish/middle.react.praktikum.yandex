@@ -5,3 +5,9 @@
   --layout-padding: calc(var(--padding) * 7);
   --layout-border-small: 2px solid #e6e6e6;
 }
+
+.button-reset {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}

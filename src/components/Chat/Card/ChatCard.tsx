@@ -8,28 +8,33 @@ import resources from '../../../resources';
 import { IChatCardProps } from './IChatCardProps';
 
 const ChatCard: React.FunctionComponent<IChatCardProps> = ({
-  name,
-  logo,
+  chat,
   author,
   lastMessage,
+  selected,
+  onChatSelected,
 }: IChatCardProps) => {
   const messageDate = dateHelper.getDate(lastMessage.timestamp);
   return (
-    <section className="chat-info">
-      <Avatar className="chat-info__logo" src={logo} alt={resources.chat.cardLogo} />
-      <div className="chat-info__content">
-        <div className="chat-info__content_top">
-          <p className="chat-info__content_top__name">{name}</p>
-          <p className="chat-info__content_top__message-date">{messageDate}</p>
-        </div>
-        <div className="chat-info__content_bottom">
-          <p className="chat-info__content_bottom__author">
-            {author.name}
-            :
-          </p>
-          <p className="chat-info__content_bottom__message">{lastMessage.content}</p>
-        </div>
-      </div>
+    <section className={`card ${selected ? 'selected' : ''}`}>
+      <button className="card__wrapper button-reset" data-guid={chat.guid} onClick={onChatSelected} type="button">
+        <section className="card__wrapper__body">
+          <Avatar className="card__wrapper__body__logo" src={chat.logo} alt={resources.chat.cardLogo} />
+          <section className="card__wrapper__body__content">
+            <div className="card__wrapper__body__content_top">
+              <p className="card__wrapper__body__content_top__name">{chat.name}</p>
+              <p className="card__wrapper__body__content_top__message-date">{messageDate}</p>
+            </div>
+            <div className="card__wrapper__body__content_bottom">
+              <p className="card__wrapper__body__content_bottom__author">
+                {author.name}
+                :
+              </p>
+              <p className="card__wrapper__body__content_bottom__message">{lastMessage.content}</p>
+            </div>
+          </section>
+        </section>
+      </button>
     </section>
   );
 };
