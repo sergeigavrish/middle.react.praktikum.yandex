@@ -1,22 +1,22 @@
 import React, { FunctionComponent } from 'react';
 
-import './ChatCard.css';
-
-import Avatar from '../../../shared/Avatar/Avatar';
+import { Avatar } from '../../../shared/Avatar/Avatar';
+import { IChatCardPropsWithHandlers } from './IChatCardProps';
 import dateHelper from '../../../helpers/dateHelper';
 import resources from '../../../resources';
-import { IChatCardProps } from './IChatCardProps';
 
-const ChatCard: FunctionComponent<IChatCardProps> = ({
+import './ChatCard.css';
+
+export const ChatCard: FunctionComponent<IChatCardPropsWithHandlers> = ({
   chat,
   author,
   lastMessage,
   selected,
   onChatSelected,
-}: IChatCardProps) => {
+}: IChatCardPropsWithHandlers) => {
   const messageDate = dateHelper.getDate(lastMessage.timestamp);
   return (
-    <button className="card-wrap button-reset" data-guid={chat.guid} onClick={onChatSelected} type="button">
+    <button className="card-wrap button-reset" onClick={() => onChatSelected(chat.guid)} type="button">
       <section className={`card ${selected ? 'selected' : ''}`}>
         <section className="card__body">
           <Avatar className="card__logo" src={chat.logo} alt={resources.chat.avatar.cardIcon} />
@@ -38,5 +38,3 @@ const ChatCard: FunctionComponent<IChatCardProps> = ({
     </button>
   );
 };
-
-export default ChatCard;
