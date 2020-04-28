@@ -34,7 +34,7 @@
 .message__time {
   text-align: end;
   flex: 0;
-  padding-left: var(--spacing-large);
+  padding-left: var(--spacing-largest);
   padding-top: calc(var(--spacing-smallest) + var(--spacing-double));
 }
 
