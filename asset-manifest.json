@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/middle.react.praktikum.yandex/static/css/main.26295f0d.chunk.css",
+    "main.js": "/middle.react.praktikum.yandex/static/js/main.d15fdef6.chunk.js",
+    "main.js.map": "/middle.react.praktikum.yandex/static/js/main.d15fdef6.chunk.js.map",
+    "runtime-main.js": "/middle.react.praktikum.yandex/static/js/runtime-main.fcea232f.js",
+    "runtime-main.js.map": "/middle.react.praktikum.yandex/static/js/runtime-main.fcea232f.js.map",
+    "static/js/2.4853405e.chunk.js": "/middle.react.praktikum.yandex/static/js/2.4853405e.chunk.js",
+    "static/js/2.4853405e.chunk.js.map": "/middle.react.praktikum.yandex/static/js/2.4853405e.chunk.js.map",
+    "static/js/3.934b998f.chunk.js": "/middle.react.praktikum.yandex/static/js/3.934b998f.chunk.js",
+    "static/js/3.934b998f.chunk.js.map": "/middle.react.praktikum.yandex/static/js/3.934b998f.chunk.js.map",
+    "index.html": "/middle.react.praktikum.yandex/index.html",
+    "precache-manifest.cd9c10f0afd3d653171f1c7b65be21b9.js": "/middle.react.praktikum.yandex/precache-manifest.cd9c10f0afd3d653171f1c7b65be21b9.js",
+    "service-worker.js": "/middle.react.praktikum.yandex/service-worker.js",
+    "static/css/main.26295f0d.chunk.css.map": "/middle.react.praktikum.yandex/static/css/main.26295f0d.chunk.css.map",
+    "static/js/2.4853405e.chunk.js.LICENSE.txt": "/middle.react.praktikum.yandex/static/js/2.4853405e.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/middle.react.praktikum.yandex/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.fcea232f.js",
+    "static/js/2.4853405e.chunk.js",
+    "static/css/main.26295f0d.chunk.css",
+    "static/js/main.d15fdef6.chunk.js"
+  ]
+}
