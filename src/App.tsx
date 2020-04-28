@@ -1,8 +1,8 @@
 import React from 'react';
 
-import './App.css';
+import { MainLayout } from './components/Main/Layout/MainLayout';
 
-import MainLayout from './core/MainLayout/MainLayout';
+import './App.css';
 
 function App() {
   return (

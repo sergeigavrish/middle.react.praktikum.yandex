@@ -1,14 +1,16 @@
-import React, { SyntheticEvent, Component } from 'react';
+import React, { Component } from 'react';
+
+import { IChatInfo } from '../../../models/ichat-info';
+import { IUser } from '../../../models/iuser';
+import { IMessage } from '../../../models/imessage';
+import { IHashTable } from '../../../models/ihash-table';
+import { ChatHistory } from '../../Chat/History/ChatHistory';
+import { ChatList } from '../../Chat/List/ChatList';
+import mockStateAssembler from '../../../helpers/mockStateAssembler';
+import mapperHelper from '../../../helpers/mapperHelper';
 
 import './MainLayout.css';
-import { IChatInfo } from '../../models/ichat-info';
-import { IUser } from '../../models/iuser';
-import { IMessage } from '../../models/imessage';
-import mockStateAssembler from '../../helpers/mockStateAssembler';
-import mapperHelper from '../../helpers/mapperHelper';
-import ChatList from '../../components/Chat/List/ChatList';
-import { IHashTable } from '../../models/ihash-table';
-import ChatHistory from '../../components/Chat/History/ChatHistory';
+import sortHelper from '../../../helpers/sortHelper';
 
 interface IMainLayoutState {
   selectedChat: null | string;
@@ -17,7 +19,7 @@ interface IMainLayoutState {
   messages: IHashTable<IMessage[]>;
 }
 
-export default class MainLayout extends Component<{}, IMainLayoutState> {
+export class MainLayout extends Component<{}, IMainLayoutState> {
   constructor(props = {}) {
     super(props);
     this.state = {
@@ -37,9 +39,9 @@ export default class MainLayout extends Component<{}, IMainLayoutState> {
     });
   }
 
-  private onChatSelected = (e: SyntheticEvent<HTMLElement, MouseEvent>) => {
+  private onChatSelected = (chatId: string) => {
     this.setState({
-      selectedChat: e.currentTarget.dataset.guid as string,
+      selectedChat: chatId,
     });
   }
 
@@ -57,17 +59,18 @@ export default class MainLayout extends Component<{}, IMainLayoutState> {
     return mapperHelper.mapChatInfoToChatCardProps(
       chats, users,
       messages, selectedChat,
-      this.onChatSelected,
     );
   }
 
   render() {
-    const chatList = this.getChatList();
+    const chatList = this.getChatList().sort((a, b) => {
+      return sortHelper.sortByDate(a.lastMessage.timestamp, b.lastMessage.timestamp);
+    });
     const messageList = this.getMessageList();
     return (
       <main className="layout">
         <aside className="layout__sidebar">
-          <ChatList chatList={chatList} />
+          <ChatList onChatSelected={this.onChatSelected} chatList={chatList} />
         </aside>
         <div className="layout__content">
           <ChatHistory messageList={messageList} />
