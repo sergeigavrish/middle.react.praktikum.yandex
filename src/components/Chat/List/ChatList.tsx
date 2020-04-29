@@ -4,10 +4,13 @@ import { ChatCard } from '../Card/ChatCard';
 
 import { IChatListProps } from './IChatListProps';
 
-export const ChatList: FunctionComponent<IChatListProps> = ({ chatList, onChatSelected }: IChatListProps) => (
+export const ChatList: FunctionComponent<IChatListProps> = ({ chatList, selectedChat, onChatSelected }: IChatListProps) => (
   <section>
-    {chatList.map((chatListItem) => (
-      <ChatCard {...chatListItem} onChatSelected={onChatSelected} key={chatListItem.chat.guid} />
-    ))}
+    {chatList.map((item) => {
+      const isSelected = selectedChat === item.guid;
+      return (
+        <ChatCard {...item} isSelected={isSelected} onChatSelected={onChatSelected} key={item.guid} />
+      );
+    })}
   </section>
 );

@@ -1,3 +1,3 @@
-import { IServiceMessage, IMessageWithAuthor } from '../interfaces/imessage';
+import { IServiceMessage, ITextMessage } from '../interfaces/IMessage';
 
-export type MessageList = Array<IServiceMessage | IMessageWithAuthor>;
+export type MessageList = Array<IServiceMessage | ITextMessage>;

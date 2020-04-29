@@ -1,6 +1,7 @@
-import { IChatCardProps } from '../Card/IChatCardProps';
+import { IChatInfo } from '../../../models/interfaces/IChatInfo';
 
 export interface IChatListProps {
-  chatList: IChatCardProps[];
+  chatList: IChatInfo[];
+  selectedChat: string;
   onChatSelected(chatId: string): void;
 }

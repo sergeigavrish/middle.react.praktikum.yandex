@@ -1,14 +1,6 @@
-import { IChatInfo } from '../../../models/interfaces/ichat-info';
-import { IMessage } from '../../../models/interfaces/imessage';
-import { IUser } from '../../../models/interfaces/iuser';
+import { IChatInfo } from '../../../models/interfaces/IChatInfo';
 
-export interface IChatCardProps {
-  selected: boolean;
-  chat: IChatInfo;
-  lastMessage: IMessage;
-  author: IUser;
-}
-
-export interface IChatCardPropsWithHandlers extends IChatCardProps {
+export interface IChatCardProps extends IChatInfo {
+  isSelected: boolean;
   onChatSelected(chatId: string): void;
 }

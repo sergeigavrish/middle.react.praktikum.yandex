@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 
 import { ChatMessageWrapper } from '../MessageWrapper/ChatMessageWrapper';
 
-import { IServiceMessage } from '../../../models/interfaces/imessage';
+import { IServiceMessage } from '../../../models/interfaces/IMessage';
 
 import dateHelper from '../../../helpers/dateHelper';
 import resources from '../../../models/constants/resources';

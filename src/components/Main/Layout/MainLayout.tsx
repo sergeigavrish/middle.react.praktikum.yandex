@@ -3,11 +3,10 @@ import React, { Component } from 'react';
 import { ChatHistory } from '../../Chat/History/ChatHistory';
 import { ChatList } from '../../Chat/List/ChatList';
 
-import { IMainLayoutState } from '../IMainLayoutState';
+import { IMainLayoutState } from './IMainLayoutState';
 
-import mapperHelper from '../../../helpers/mapperHelper';
+import { mockService } from '../../../helpers/MockState/MockService';
 import sortHelper from '../../../helpers/sortHelper';
-import mockStateAssembler from '../../../helpers/mockStateAssembler';
 
 import './MainLayout.css';
 
@@ -15,54 +14,59 @@ export class MainLayout extends Component<{}, IMainLayoutState> {
   constructor(props = {}) {
     super(props);
     this.state = {
-      selectedChat: null,
-      chats: {},
-      users: {},
-      messages: {},
+      selectedChat: '',
+      chatList: [],
+      chatHistory: {},
     };
   }
 
   async componentDidMount() {
-    const { userStorage, chatStorage, messageStorage } = await mockStateAssembler();
+    const chatList = await mockService.getChatList();
     this.setState({
-      chats: chatStorage,
-      users: userStorage,
-      messages: messageStorage,
+      chatList,
     });
   }
 
-  private onChatSelected = (chatId: string) => {
-    this.setState({
-      selectedChat: chatId,
-    });
-  }
-
-  private getMessageList() {
-    const { selectedChat, messages, users } = this.state;
-    const selectedChatMessages = selectedChat ? messages[selectedChat] : [];
-    return mapperHelper.mapMessageToMessageWithAuthor(selectedChatMessages, users);
-  }
-
-  private getChatList() {
-    const {
-      chats, users,
-      messages, selectedChat,
-    } = this.state;
-    return mapperHelper.mapChatInfoToChatCardProps(
-      chats, users,
-      messages, selectedChat,
+  private onChatSelected = (selectedChat: string) => {
+    this.setState(
+      { selectedChat },
+      () => this.loadChatHistory(),
     );
   }
 
-  render() {
-    const chatList = this.getChatList().sort((a, b) => {
+  private getMessageList() {
+    const { selectedChat, chatHistory: messages } = this.state;
+    const history = messages[selectedChat];
+    return history || [];
+  }
+
+  private getSortedChatList() {
+    const { chatList } = this.state;
+    return chatList.sort((a, b) => {
       return sortHelper.sortByDate(a.lastMessage.timestamp, b.lastMessage.timestamp);
     });
+  }
+
+
+  private loadChatHistory() {
+    const { selectedChat, chatHistory: messages } = this.state;
+    const isHistoryExist = messages[selectedChat];
+    if (!isHistoryExist) {
+      mockService.getChatHistoryByChatId(selectedChat)
+        .then((chatHistory) => this.setState({
+          chatHistory: { ...messages, [selectedChat]: chatHistory },
+        }));
+    }
+  }
+
+  render() {
+    const { selectedChat } = this.state;
+    const chatList = this.getSortedChatList();
     const messageList = this.getMessageList();
     return (
       <main className="layout">
         <aside className="layout__sidebar">
-          <ChatList onChatSelected={this.onChatSelected} chatList={chatList} />
+          <ChatList onChatSelected={this.onChatSelected} selectedChat={selectedChat} chatList={chatList} />
         </aside>
         <div className="layout__content">
           <ChatHistory messageList={messageList} />
