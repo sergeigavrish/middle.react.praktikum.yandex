@@ -1,10 +1,10 @@
 import React, { FunctionComponent } from 'react';
 
-import { ChatCardMessageProps } from './ChatCardMessageProps';
+import { IChatCardMessageProps } from './IChatCardMessageProps';
 
 import './ChatCardMessage.css';
 
-export const ChatCardMessage: FunctionComponent<ChatCardMessageProps> = ({ author, message }: ChatCardMessageProps) => (
+export const ChatCardMessage: FunctionComponent<IChatCardMessageProps> = ({ author, message }: IChatCardMessageProps) => (
   <div className="card-message">
     <span className="card-message__author">
       {author}

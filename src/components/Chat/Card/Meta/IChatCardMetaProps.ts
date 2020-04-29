@@ -1,4 +1,4 @@
-export interface ChatCardMetaProps {
+export interface IChatCardMetaProps {
   chatName: string;
   lastMessageDate: string;
 }
