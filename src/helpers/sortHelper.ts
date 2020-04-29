@@ -1,8 +1,8 @@
-const sortByDate = <T extends { timestamp: number }>(a: T, b: T) => {
-  if (a.timestamp > b.timestamp) {
+const sortByDate = (a: number, b: number) => {
+  if (a > b) {
     return -1;
   }
-  if (a.timestamp < b.timestamp) {
+  if (a < b) {
     return 1;
   }
   return 0;

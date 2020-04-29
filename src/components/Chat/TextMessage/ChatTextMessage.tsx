@@ -1,20 +1,23 @@
 import React, { FunctionComponent } from 'react';
-import ChatMessageWrapper from '../MessageWrapper/ChatMessageWrapper';
 
-import './ChatTextMessage.css';
-import Avatar from '../../../shared/Avatar/Avatar';
-import resources from '../../../resources';
-import { IMessageWithAuthor } from '../../../models/imessage';
+import { Avatar } from '../../../shared/Avatar/Avatar';
+import { ChatMessageWrapper } from '../MessageWrapper/ChatMessageWrapper';
+
+import { ITextMessage } from '../../../models/interfaces/IMessage';
+
+import resources from '../../../models/constants/resources';
 import dateHelper from '../../../helpers/dateHelper';
 
-const ChatTextMessage: FunctionComponent<IMessageWithAuthor> = ({
+import './ChatTextMessage.css';
+
+export const ChatTextMessage: FunctionComponent<ITextMessage> = ({
   author,
   content,
   timestamp,
-}: IMessageWithAuthor) => (
+}: ITextMessage) => (
   <ChatMessageWrapper>
     <section style={{ position: 'relative' }} className="message">
-      <Avatar className="message__icon" src={author.avatar} alt={resources.chat.messageAuthor} />
+      <Avatar className="message__icon" src={author.avatar} alt={resources.chat.avatar.messageAuthor} />
       <div className="message__body">
         <span className="message__author">{author.name}</span>
         <div className="message__content">
@@ -27,6 +30,3 @@ const ChatTextMessage: FunctionComponent<IMessageWithAuthor> = ({
     </section>
   </ChatMessageWrapper>
 );
-
-
-export default ChatTextMessage;
