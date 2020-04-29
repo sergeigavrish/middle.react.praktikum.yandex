@@ -1,4 +1,4 @@
-import { IUser } from './iuser';
+import { IUser } from './IUser';
 import { MessageTypes } from '../enums/MessageTypes';
 
 export interface IMessageBase {
@@ -6,12 +6,7 @@ export interface IMessageBase {
   timestamp: number;
 }
 
-export interface IMessage extends IMessageBase {
-  authorId: string;
-  content: string;
-}
-
-export interface IMessageWithAuthor extends IMessageBase {
+export interface ITextMessage extends IMessageBase {
   author: IUser;
   content: string;
   type: MessageTypes.Text;
