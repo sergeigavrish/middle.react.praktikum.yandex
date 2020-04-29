@@ -30,6 +30,11 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "max-len": ["error", { "code": 160 }],
+    "arrow-body-style": "off",
+    "import/prefer-default-export": "off",
+    "class-methods-use-this":"off",
+    "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
     "import/extensions": [
       "error",
       "ignorePackages",

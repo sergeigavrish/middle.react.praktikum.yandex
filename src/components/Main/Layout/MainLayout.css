@@ -1,0 +1,10 @@
+@import "../../../styles/variables.css";
+@import "../../../styles/colors.css";
+
+.layout {
+  height: 100vh;
+  display: flex;
+  background-color: var(--layout-background-color);
+  padding: var(--spacing-large);
+  padding-bottom: var(--spacing-largest);
+}

@@ -1,42 +1,36 @@
 import React, { FunctionComponent } from 'react';
 
+import { Avatar } from '../../../shared/Avatar/Avatar';
+
+import { IChatCardProps } from './IChatCardProps';
+import { ChatCardMeta } from './Meta/ChatCardMeta';
+import { ChatCardMessage } from './Message/ChatCardMessage';
+
+import dateHelper from '../../../helpers/dateHelper';
+import resources from '../../../models/constants/resources';
+
 import './ChatCard.css';
 
-import Avatar from '../../../shared/Avatar/Avatar';
-import dateHelper from '../../../helpers/dateHelper';
-import resources from '../../../resources';
-import { IChatCardProps } from './IChatCardProps';
-
-const ChatCard: FunctionComponent<IChatCardProps> = ({
-  chat,
-  author,
+export const ChatCard: FunctionComponent<IChatCardProps> = ({
+  guid,
+  logo,
+  name,
   lastMessage,
-  selected,
+  isSelected,
   onChatSelected,
 }: IChatCardProps) => {
   const messageDate = dateHelper.getDate(lastMessage.timestamp);
   return (
-    <button className="card-wrap button-reset" data-guid={chat.guid} onClick={onChatSelected} type="button">
-      <section className={`card ${selected ? 'selected' : ''}`}>
+    <button className="card-wrap button-reset" onClick={() => onChatSelected(guid)} type="button">
+      <section className={`card ${isSelected ? 'selected' : ''}`}>
         <section className="card__body">
-          <Avatar className="card__logo" src={chat.logo} alt={resources.chat.cardIcon} />
+          <Avatar className="card__logo" src={logo} alt={resources.chat.avatar.cardIcon} />
           <section className="card__info">
-            <div className="card__info__top">
-              <p className="card__info__top__name">{chat.name}</p>
-              <p className="card__info__top__date">{messageDate}</p>
-            </div>
-            <div className="card__info__bottom">
-              <p className="card__info__bottom__author">
-                {author.name}
-                :
-              </p>
-              <p className="card__info__bottom__message">{lastMessage.content}</p>
-            </div>
+            <ChatCardMeta chatName={name} lastMessageDate={messageDate} />
+            <ChatCardMessage author={lastMessage.author.name} message={lastMessage.content} />
           </section>
         </section>
       </section>
     </button>
   );
 };
-
-export default ChatCard;

@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
+
+import { ChatCard } from '../Card/ChatCard';
 
 import { IChatListProps } from './IChatListProps';
-import ChatCard from '../Card/ChatCard';
 
-const ChatList: React.FunctionComponent<IChatListProps> = ({ chatList: chats }: IChatListProps) => (
+export const ChatList: FunctionComponent<IChatListProps> = ({ chatList, selectedChat, onChatSelected }: IChatListProps) => (
   <section>
-    {chats.map((chat) => <ChatCard {...chat} key={chat.chat.guid} />)}
+    {chatList.map((item) => {
+      const isSelected = selectedChat === item.guid;
+      return (
+        <ChatCard {...item} isSelected={isSelected} onChatSelected={onChatSelected} key={item.guid} />
+      );
+    })}
   </section>
 );
-
-export default ChatList;
