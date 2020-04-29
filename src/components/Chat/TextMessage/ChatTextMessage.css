@@ -2,6 +2,7 @@
 
 .message {
   display: flex;
+  margin: var(--spacing-small) var(--spacing-base) var(--spacing-small) var(--spacing-large);
 }
 
 .message__icon {
@@ -17,28 +18,27 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  line-height: 150%;
 }
 
 .message__author {
   text-align: left;
   font-weight: 600;
+  height: var(--spacing-double);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .message__content {
+  line-height: 150%;
   word-wrap: break-word;
   white-space: pre-wrap;
   text-align: justify;
 }
 
 .message__time {
-  text-align: end;
-  flex: 0;
-  padding-left: var(--spacing-largest);
-  padding-top: calc(var(--spacing-smallest) + var(--spacing-double));
-}
-
-.message__created {
   opacity: 0.5;
   font-size: 0.85em;
+  padding-left: var(--spacing-largest);
+  padding-top: var(--spacing-double);
 }
