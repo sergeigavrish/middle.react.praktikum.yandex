@@ -13,6 +13,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 13px;
+  line-height: 18px;
 }
 
 code {
@@ -20,6 +22,9 @@ code {
     monospace;
 }
 
-p {
-  margin: 0;
+.button-reset {
+  padding: 0;
+  border: none;
+  font-size: inherit;
+  background-color: transparent;
 }

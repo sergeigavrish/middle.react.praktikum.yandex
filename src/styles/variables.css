@@ -8,9 +8,3 @@
   --spacing-largest: 35px;
   --border-small: 3px solid #e6e6e6;
 }
-
-.button-reset {
-  padding: 0;
-  border: none;
-  background-color: transparent;
-}
