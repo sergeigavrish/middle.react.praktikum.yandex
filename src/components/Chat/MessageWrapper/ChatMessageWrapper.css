@@ -1,6 +1,7 @@
-@import '../../../styles/variables.css';
+@import "../../../styles/variables.css";
 
 .message-wrap {
+  max-width: 560px;
   padding: 0 var(--spacing-large);
-  margin: var(--spacing-small) var(--spacing-base) var(--spacing-small) var(--spacing-large);
+  margin: 0 auto;
 }

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 
-import { ChatHistory } from '../../Chat/History/ChatHistory';
-import { ChatList } from '../../Chat/List/ChatList';
+import { MainSidebar } from '../Sidebar/MainSidebar';
+import { MainContent } from '../Content/MainContent';
 
 import { IMainLayoutState } from './IMainLayoutState';
 
 import { mockService } from '../../../helpers/MockState/MockService';
 import sortHelper from '../../../helpers/sortHelper';
+import utils from '../../../helpers/utils';
 
 import './MainLayout.css';
 
@@ -34,10 +35,14 @@ export class MainLayout extends Component<{}, IMainLayoutState> {
     );
   }
 
+  private onChatClosed = () => {
+    this.setState({ selectedChat: '' });
+  }
+
   private getMessageList() {
     const { selectedChat, chatHistory: messages } = this.state;
     const history = messages[selectedChat];
-    return history || [];
+    return utils.addServiceMessageToChatHistory(history || []);
   }
 
   private getSortedChatList() {
@@ -46,7 +51,6 @@ export class MainLayout extends Component<{}, IMainLayoutState> {
       return sortHelper.sortByDate(a.lastMessage.timestamp, b.lastMessage.timestamp);
     });
   }
-
 
   private loadChatHistory() {
     const { selectedChat, chatHistory: messages } = this.state;
@@ -65,12 +69,17 @@ export class MainLayout extends Component<{}, IMainLayoutState> {
     const messageList = this.getMessageList();
     return (
       <main className="layout">
-        <aside className="layout__sidebar">
-          <ChatList onChatSelected={this.onChatSelected} selectedChat={selectedChat} chatList={chatList} />
-        </aside>
-        <div className="layout__content">
-          <ChatHistory messageList={messageList} />
-        </div>
+        <MainSidebar
+          className={`${selectedChat ? 'hidden' : 'displayed'}`}
+          onChatSelected={this.onChatSelected}
+          selectedChat={selectedChat}
+          chatList={chatList}
+        />
+        <MainContent
+          className={`${selectedChat ? 'displayed' : 'hidden'}`}
+          onChatClosed={this.onChatClosed}
+          messageList={messageList}
+        />
       </main>
     );
   }

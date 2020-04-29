@@ -25,7 +25,7 @@ export const ChatTextMessage: FunctionComponent<ITextMessage> = ({
         </div>
       </div>
       <div className="message__time">
-        <span className="message__created">{dateHelper.getTime(timestamp)}</span>
+        <span>{dateHelper.getTime(timestamp)}</span>
       </div>
     </section>
   </ChatMessageWrapper>

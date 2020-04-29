@@ -8,20 +8,3 @@
   padding: var(--spacing-large);
   padding-bottom: var(--spacing-largest);
 }
-
-.layout__sidebar,
-.layout__content {
-  background-color: var(--default-background-color);
-}
-
-.layout__sidebar {
-  width: 380px;
-  height: 100%;
-  overflow: auto;
-  border-right: var(--border-small);
-}
-
-.layout__content {
-  width: calc(100% - 380px);
-  padding: var(--spacing-large) 0;
-}

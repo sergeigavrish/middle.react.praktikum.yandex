@@ -1,0 +1,24 @@
+@import "../../../../styles/variables.css";
+@import "../../../../styles/colors.css";
+
+.card-meta {
+  left: 0;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-base);
+}
+
+.card-meta__name {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: initial;
+}
+
+.card-meta__date {
+  overflow: visible;
+  font-size: 0.85em;
+  opacity: 0.5;
+}

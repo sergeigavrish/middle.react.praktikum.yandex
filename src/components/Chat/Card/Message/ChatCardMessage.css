@@ -1,0 +1,18 @@
+@import "../../../../styles/variables.css";
+@import "../../../../styles/colors.css";
+
+.card-message {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: initial;
+}
+
+.card-message__author {
+  color: var(--chat-info-author);
+}
+
+.card-message__content {
+  padding-left: var(--spacing-smallest);
+}
