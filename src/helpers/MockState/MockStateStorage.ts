@@ -2,6 +2,8 @@ import { v4 as uuid } from 'uuid';
 
 import { IHashTable } from '../../models/interfaces/IHashTable';
 
+import dictionary from './mockStateDictionary.json';
+
 import {
   storageAssembler,
   userFactoryWrapper,
@@ -11,26 +13,15 @@ import {
 import { IMockChatInfo } from './interfaces/IMockChatInfo';
 import { IMockMessage } from './interfaces/IMockMessage';
 import { IUser } from '../../models/interfaces/IUser';
+import { IStorage } from './interfaces/IStorage';
 
-export class MockStateStorage {
+export class MockStateStorage implements IStorage {
   private userStorage: IHashTable<IUser> = {};
   private chatStorage: IHashTable<IMockChatInfo> = {};
   private messageStorage: IHashTable<IMockMessage[]> = {};
-  private initialized = false;
 
-  private async init() {
-    const { chatNames, usernames, messages } = await import('./mockStateDictionary.json');
-    this.initializeStorage(chatNames, usernames, messages);
-    this.initialized = true;
-  }
-
-  private initializeStorage(chatNames: string[], usernames: string[], messages: string[]) {
-    this.userStorage = storageAssembler<IUser>(usernames.map(() => uuid()), userFactoryWrapper(usernames));
-    this.chatStorage = storageAssembler<IMockChatInfo>(chatNames.map(() => uuid()), chatInfoFactoryWrapper(chatNames));
-    this.messageStorage = storageAssembler<IMockMessage[]>(
-      Object.keys(this.chatStorage),
-      messagesFactoryWrapper(messages, Object.keys(this.userStorage)),
-    );
+  constructor() {
+    this.init();
   }
 
   getUserById(id: string) {
@@ -49,10 +40,17 @@ export class MockStateStorage {
     return this.messageStorage[id];
   }
 
-  checkIfInitialized() {
-    if (this.initialized) {
-      return Promise.resolve();
-    }
-    return this.init();
+  private init() {
+    const { chatNames, usernames, messages } = dictionary;
+    this.initializeStorage(chatNames, usernames, messages);
+  }
+
+  private initializeStorage(chatNames: string[], usernames: string[], messages: string[]) {
+    this.userStorage = storageAssembler<IUser>(usernames.map(() => uuid()), userFactoryWrapper(usernames));
+    this.chatStorage = storageAssembler<IMockChatInfo>(chatNames.map(() => uuid()), chatInfoFactoryWrapper(chatNames));
+    this.messageStorage = storageAssembler<IMockMessage[]>(
+      Object.keys(this.chatStorage),
+      messagesFactoryWrapper(messages, Object.keys(this.userStorage)),
+    );
   }
 }

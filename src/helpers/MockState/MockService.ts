@@ -7,22 +7,22 @@ import { IMockChatInfo } from './interfaces/IMockChatInfo';
 import { IHashTable } from '../../models/interfaces/IHashTable';
 import { IMockMessage } from './interfaces/IMockMessage';
 import { ITextMessage } from '../../models/interfaces/IMessage';
+import { IStorage } from './interfaces/IStorage';
 
 class MockService {
-  constructor(private storage: MockStateStorage) { }
+  constructor(private storage: IStorage) { }
 
-  async getChatList(): Promise<IChatInfo[]> {
-    await this.storage.checkIfInitialized();
+  getChatList(): Promise<IChatInfo[]> {
     const chats = this.storage.getChats();
     const messages = this.storage.getMessages();
     const chatInfo: IChatInfo[] = this.mapToChatInfo(chats, messages);
-    return chatInfo;
+    return Promise.resolve(chatInfo);
   }
 
-  async getChatHistoryByChatId(chatId: string): Promise<ITextMessage[]> {
-    await this.storage.checkIfInitialized();
+  getChatHistoryByChatId(chatId: string): Promise<ITextMessage[]> {
     const history = this.storage.getChatHistoryByChatId(chatId);
-    return this.mapToMessage(history);
+    const messageList = this.mapToMessage(history);
+    return Promise.resolve(messageList);
   }
 
   private mapToMessage(history: IMockMessage[]) {

@@ -4,12 +4,12 @@ import { ITextMessage } from '../models/interfaces/IMessage';
 import { MessageList } from '../models/types/MessageList';
 import { MessageTypes } from '../models/enums/MessageTypes';
 
-import dateHelper from './dateHelper';
+import { removeTimeFromTimestamp } from './dateHelper';
 
-const addServiceMessageToChatHistory = (messageList: ITextMessage[]): MessageList => {
+export const addServiceMessageToChatHistory = (messageList: ITextMessage[]): MessageList => {
   const dateSet: Set<number> = new Set();
   return messageList.reduce((acc: MessageList, m) => {
-    const timestamp = dateHelper.removeTimeFromTimestamp(m.timestamp);
+    const timestamp = removeTimeFromTimestamp(m.timestamp);
     if (!dateSet.has(timestamp)) {
       dateSet.add(timestamp);
       acc.push({
@@ -22,9 +22,3 @@ const addServiceMessageToChatHistory = (messageList: ITextMessage[]): MessageLis
     return acc;
   }, []);
 };
-
-const utils = {
-  addServiceMessageToChatHistory,
-};
-
-export default utils;

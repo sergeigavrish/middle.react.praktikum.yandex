@@ -6,8 +6,7 @@ import { MainContent } from '../Content/MainContent';
 import { IMainLayoutState } from './IMainLayoutState';
 
 import { mockService } from '../../../helpers/MockState/MockService';
-import sortHelper from '../../../helpers/sortHelper';
-import utils from '../../../helpers/utils';
+import { addServiceMessageToChatHistory } from '../../../helpers/utils';
 
 import './MainLayout.css';
 
@@ -22,10 +21,14 @@ export class MainLayout extends Component<{}, IMainLayoutState> {
   }
 
   async componentDidMount() {
-    const chatList = await mockService.getChatList();
-    this.setState({
-      chatList,
-    });
+    try {
+      const chatList = await mockService.getChatList();
+      this.setState({
+        chatList,
+      });
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   private onChatSelected = (selectedChat: string) => {
@@ -42,14 +45,12 @@ export class MainLayout extends Component<{}, IMainLayoutState> {
   private getMessageList() {
     const { selectedChat, chatHistory: messages } = this.state;
     const history = messages[selectedChat];
-    return utils.addServiceMessageToChatHistory(history || []);
+    return addServiceMessageToChatHistory(history || []);
   }
 
   private getSortedChatList() {
     const { chatList } = this.state;
-    return chatList.sort((a, b) => {
-      return sortHelper.sortByDate(a.lastMessage.timestamp, b.lastMessage.timestamp);
-    });
+    return chatList.sort((a, b) => a.lastMessage.timestamp - b.lastMessage.timestamp);
   }
 
   private loadChatHistory() {
