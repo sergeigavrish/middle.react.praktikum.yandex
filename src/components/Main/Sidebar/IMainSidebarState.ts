@@ -1,6 +1,5 @@
 import { IChatInfo } from '../../../models/interfaces/IChatInfo';
 
-export interface IChatListProps {
+export interface IMainSidebarState {
   chatList: IChatInfo[];
-  selectedChat: string;
 }

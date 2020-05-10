@@ -6,12 +6,12 @@
   padding: 5px 15px;
 }
 
-.card {
-  max-width: 360px;
+.card-wrap.selected {
+  background-color: var(--selected-chat-background-color);
 }
 
-.card.selected {
-  background-color: var(--selected-chat-background-color);
+.card {
+  max-width: 360px;
 }
 
 .card__body {
