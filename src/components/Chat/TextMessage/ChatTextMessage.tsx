@@ -14,9 +14,10 @@ export const ChatTextMessage: FunctionComponent<ITextMessage> = ({
   author,
   content,
   timestamp,
+  isChained,
 }: ITextMessage) => (
   <ChatMessageWrapper>
-    <section style={{ position: 'relative' }} className="message">
+    <section className={`message ${isChained ? 'chained' : ''}`}>
       <Avatar className="message__icon" src={author.avatar} alt={resources.avatar.messageAuthor} />
       <div className="message__body">
         <span className="message__author">{author.name}</span>

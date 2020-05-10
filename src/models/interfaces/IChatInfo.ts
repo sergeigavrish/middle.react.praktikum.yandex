@@ -1,8 +1,8 @@
-import { ITextMessage } from './IMessage';
+import { ITextMessageDto } from './IMessage';
 
 export interface IChatInfo {
     guid: string;
     logo: string;
     name: string;
-    lastMessage: ITextMessage;
+    lastMessage: ITextMessageDto;
 }
