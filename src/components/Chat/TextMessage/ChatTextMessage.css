@@ -5,10 +5,31 @@
   margin: var(--spacing-small) var(--spacing-base) var(--spacing-small) var(--spacing-large);
 }
 
+.message.chained {
+  margin: calc(var(--spacing-half) * -1) var(--spacing-base) calc(var(--spacing-half) * -1) var(--spacing-large);
+}
+
+.message.chained:last-child {
+  margin-bottom: var(--spacing-small);
+}
+
+.message.chained > .message__icon,
+.message.chained > .message__body > .message__author {
+  display: none;
+}
+
+.message.chained > .message__body > .message__content {
+  margin-left: calc(var(--avatar-width) + var(--spacing-large));
+}
+
+.message.chained > .message__time {
+  padding-top: 0;
+}
+
 .message__icon {
-  width: 50px;
-  height: 50px;
-  max-width: 50px;
+  width: var(--avatar-width);
+  height: var(--avatar-width);
+  max-width: var(--avatar-width);
   margin-right: var(--spacing-large);
   flex: 1;
 }
