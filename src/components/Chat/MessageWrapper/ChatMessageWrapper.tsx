@@ -10,9 +10,7 @@ export const ChatMessageWrapper: FunctionComponent<IChatMessageWrapperProps> = (
   className = resources.messages.messageWrap,
   children,
 }: IChatMessageWrapperProps) => (
-  <div>
-    <div className={className}>
-      {children}
-    </div>
+  <div className={className}>
+    {children}
   </div>
 );
