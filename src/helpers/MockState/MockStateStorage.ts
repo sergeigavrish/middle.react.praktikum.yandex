@@ -41,15 +41,20 @@ export class MockStateStorage implements IStorage {
   }
 
   private init() {
-    const { chatNames, usernames, messages } = dictionary;
-    this.initializeStorage(chatNames, usernames, messages);
+    const {
+      chatNames,
+      chatGuids,
+      usernames,
+      messages,
+    } = dictionary;
+    this.initializeStorage(chatNames, chatGuids, usernames, messages);
   }
 
-  private initializeStorage(chatNames: string[], usernames: string[], messages: string[]) {
+  private initializeStorage(chatNames: string[], chatGuids: string[], usernames: string[], messages: string[]) {
     this.userStorage = storageAssembler<IUser>(usernames.map(() => uuid()), userFactoryWrapper(usernames));
-    this.chatStorage = storageAssembler<IMockChatInfo>(chatNames.map(() => uuid()), chatInfoFactoryWrapper(chatNames));
+    this.chatStorage = storageAssembler<IMockChatInfo>(chatGuids, chatInfoFactoryWrapper(chatNames));
     this.messageStorage = storageAssembler<IMockMessage[]>(
-      Object.keys(this.chatStorage),
+      chatGuids,
       messagesFactoryWrapper(messages, Object.keys(this.userStorage)),
     );
   }
