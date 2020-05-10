@@ -8,7 +8,7 @@
   background-color: var(--default-background-color);
 }
 
-.close-chat-button {
+.content .close-chat-button {
   position: absolute;
   display: none;
   left: 0;
@@ -22,7 +22,7 @@
 }
 
 @media screen and (max-width: 500px) {
-  .close-chat-button {
+  .content .close-chat-button {
     display: block;
   }
 

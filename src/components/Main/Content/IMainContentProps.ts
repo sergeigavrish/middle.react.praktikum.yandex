@@ -1,7 +1,4 @@
-import { MessageList } from '../../../models/types/MessageList';
+import { RouteComponentProps } from 'react-router-dom';
+import { IWithQueryFromUrlInjectedProps } from '../../../shared/WithQueryFromUrl/IWithQueryFromUrlInjectedProps';
 
-export interface IMainContentProps {
-  messageList: MessageList;
-  className: string;
-  onChatClosed(): void;
-}
+export interface IMainContentProps extends RouteComponentProps, IWithQueryFromUrlInjectedProps { }
