@@ -6,10 +6,14 @@ export interface IMessageBase {
   timestamp: number;
 }
 
-export interface ITextMessage extends IMessageBase {
+export interface ITextMessageDto extends IMessageBase {
   author: IUser;
   content: string;
   type: MessageTypes.Text;
+}
+
+export interface ITextMessage extends ITextMessageDto {
+  isChained: boolean;
 }
 
 export interface IServiceMessage extends IMessageBase {

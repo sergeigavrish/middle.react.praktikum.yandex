@@ -6,7 +6,7 @@ import { IChatInfo } from '../../models/interfaces/IChatInfo';
 import { IMockChatInfo } from './interfaces/IMockChatInfo';
 import { IHashTable } from '../../models/interfaces/IHashTable';
 import { IMockMessage } from './interfaces/IMockMessage';
-import { ITextMessage } from '../../models/interfaces/IMessage';
+import { ITextMessageDto } from '../../models/interfaces/IMessage';
 import { IStorage } from './interfaces/IStorage';
 
 class MockService {
@@ -19,7 +19,7 @@ class MockService {
     return Promise.resolve(chatInfo);
   }
 
-  getChatHistoryByChatId(chatId: string): Promise<ITextMessage[]> {
+  getChatHistoryByChatId(chatId: string): Promise<ITextMessageDto[]> {
     const history = this.storage.getChatHistoryByChatId(chatId);
     const messageList = this.mapToMessage(history);
     return Promise.resolve(messageList);
