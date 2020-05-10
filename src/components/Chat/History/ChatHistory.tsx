@@ -1,16 +1,21 @@
-import React, { FunctionComponent } from 'react';
+import React, { FC } from 'react';
 
 import { ChatServiceMessage } from '../ServiceMessage/ChatServiceMessage';
 import { ChatTextMessage } from '../TextMessage/ChatTextMessage';
+import { WithPreload } from '../../../shared/WithPreload/WithPreload';
 
-import { IChatHistoryProps } from './IChatHistoryProps';
+import { IWithPreloadInjectedProps } from '../../../shared/WithPreload/IWithPreloadInjectedProps';
 import { MessageTypes } from '../../../models/enums/MessageTypes';
+import { MessageList } from '../../../models/types/MessageList';
+
+import { mockService } from '../../../helpers/MockState/MockService';
+import { addServiceMessageToChatHistory } from '../../../helpers/utils';
 
 import './ChatHistory.css';
 
-export const ChatHistory: FunctionComponent<IChatHistoryProps> = ({ messageList }: IChatHistoryProps) => (
+export const ChatHistory: FC<IWithPreloadInjectedProps<MessageList>> = ({ data }: IWithPreloadInjectedProps<MessageList>) => (
   <div className="message-history">
-    {messageList.map((message) => {
+    {(data || []).map((message) => {
       switch (message.type) {
         case MessageTypes.Service:
           return <ChatServiceMessage key={message.guid} {...message} />;
@@ -21,3 +26,9 @@ export const ChatHistory: FunctionComponent<IChatHistoryProps> = ({ messageList 
     })}
   </div>
 );
+
+const loadMessageHistoryById = (id: string) => {
+  return mockService.getChatHistoryByChatId(id).then(addServiceMessageToChatHistory);
+};
+
+export const ChatHistoryWithPreload = WithPreload<MessageList>(loadMessageHistoryById)<IWithPreloadInjectedProps<MessageList>>(ChatHistory);
