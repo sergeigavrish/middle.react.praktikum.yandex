@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FC } from 'react';
 
 import { Avatar } from '../../../shared/Avatar/Avatar';
 
@@ -11,18 +11,16 @@ import { resources } from '../../../models/constants/resources';
 
 import './ChatCard.css';
 
-export const ChatCard: FunctionComponent<IChatCardProps> = ({
-  guid,
+export const ChatCard: FC<IChatCardProps> = ({
   logo,
   name,
   lastMessage,
   isSelected,
-  onChatSelected,
 }: IChatCardProps) => {
   const messageDate = getDate(lastMessage.timestamp);
   return (
-    <section className={`card ${isSelected ? 'selected' : ''}`}>
-      <button className="card-wrap button-reset" onClick={() => onChatSelected(guid)} type="button">
+    <div className={`card-wrap ${isSelected ? 'selected' : ''}`}>
+      <section className="card">
         <section className="card__body">
           <Avatar className="card__logo" src={logo} alt={resources.avatar.cardIcon} />
           <section className="card__info">
@@ -30,7 +28,7 @@ export const ChatCard: FunctionComponent<IChatCardProps> = ({
             <ChatCardMessage author={lastMessage.author.name} message={lastMessage.content} />
           </section>
         </section>
-      </button>
-    </section>
+      </section>
+    </div>
   );
 };
