@@ -4,11 +4,11 @@ import { withRouter } from 'react-router-dom';
 import { ChatList } from '../../Chat/List/ChatList';
 import { WithQuery } from '../../../shared/WithQueryFromUrl/WithQuery';
 
-import { IMainSidebarState } from './IMainLayoutState';
+import { IMainSidebarState } from './IMainSidebarState';
 import { UrlQueryParams } from '../../../models/types/UrlQueryParams';
 import { IWithQueryFromUrlInjectedProps } from '../../../shared/WithQueryFromUrl/IWithQueryFromUrlInjectedProps';
 
-import { mockService } from '../../../helpers/MockState/MockService';
+import { getChatList } from '../../../services/chatService';
 
 import './MainSidebar.css';
 
@@ -22,7 +22,7 @@ export class MainSidebar extends Component<IWithQueryFromUrlInjectedProps, IMain
 
   async componentDidMount() {
     try {
-      const chatList = await mockService.getChatList();
+      const chatList = await getChatList();
       this.setState({
         chatList,
       });
