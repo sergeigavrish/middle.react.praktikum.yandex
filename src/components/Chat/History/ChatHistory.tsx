@@ -1,15 +1,17 @@
 import React, { FC } from 'react';
+import { withRouter } from 'react-router-dom';
 
 import { ChatServiceMessage } from '../ServiceMessage/ChatServiceMessage';
 import { ChatTextMessage } from '../TextMessage/ChatTextMessage';
 import { WithPreload } from '../../../shared/WithPreload/WithPreload';
+import { WithQuery } from '../../../shared/WithQueryFromUrl/WithQuery';
 
 import { IWithPreloadInjectedProps } from '../../../shared/WithPreload/IWithPreloadInjectedProps';
 import { MessageTypes } from '../../../models/enums/MessageTypes';
 import { MessageList } from '../../../models/types/MessageList';
+import { UrlQueryParams } from '../../../models/types/UrlQueryParams';
 
-import { mockService } from '../../../helpers/MockState/MockService';
-import { addServiceMessageToChatHistory } from '../../../helpers/utils';
+import { getChatHistoryByChatId } from '../../../services/chatService';
 
 import './ChatHistory.css';
 
@@ -27,8 +29,6 @@ export const ChatHistory: FC<IWithPreloadInjectedProps<MessageList>> = ({ data }
   </div>
 );
 
-const loadMessageHistoryById = (id: string) => {
-  return mockService.getChatHistoryByChatId(id).then(addServiceMessageToChatHistory);
-};
-
-export const ChatHistoryWithPreload = WithPreload<MessageList>(loadMessageHistoryById)<IWithPreloadInjectedProps<MessageList>>(ChatHistory);
+const withPreload = WithPreload<MessageList>(getChatHistoryByChatId)<IWithPreloadInjectedProps<MessageList>>(ChatHistory);
+const withQueryAndPreload = WithQuery(UrlQueryParams.chatId)(withPreload);
+export const ChatHistoryWithQueryAndPreload = withRouter(withQueryAndPreload);
