@@ -1,3 +1,3 @@
 export interface IWithPreloadSelfProps {
-  param: string;
+  dataId: string;
 }

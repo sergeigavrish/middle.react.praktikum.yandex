@@ -20,29 +20,24 @@ export function WithPreload<DataType>(provider: (id: string) => Promise<DataType
       }
 
       componentDidUpdate(prevProp: WithPreloadProps<PropsType, DataType>) {
-        const { param } = this.props;
-        if (prevProp.param !== param) {
+        const { dataId } = this.props;
+        if (prevProp.dataId !== dataId) {
           this.preload();
         }
       }
 
       private preload() {
         this.setState({ isLoading: true });
-        const { param } = this.props;
-        provider(param).then((data) => this.setState({ isLoading: false, preloadedData: data }));
+        const { dataId } = this.props;
+        provider(dataId).then((data) => this.setState({ isLoading: false, preloadedData: data }));
       }
 
       render() {
         const { isLoading, preloadedData } = this.state;
-        const {
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          param,
-          ...props
-        } = this.props;
         return (
           <>
             {
-              isLoading ? <p>Data is loading...</p> : <ChildComponent {...props as WithPreloadChildProps<PropsType, DataType>} data={preloadedData} />
+              isLoading ? <p>Data is loading...</p> : <ChildComponent {...this.props as WithPreloadChildProps<PropsType, DataType>} data={preloadedData} />
             }
           </>
         );

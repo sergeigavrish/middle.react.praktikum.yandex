@@ -13,7 +13,7 @@ import { WithQuery } from '../../../../shared/WithQueryFromUrl/WithQuery';
 import { UrlQueryParams } from '../../../../models/types/UrlQueryParams';
 import { MessageTypes } from '../../../../models/enums/MessageTypes';
 import { ITextMessage } from '../../../../models/interfaces/IMessage';
-import { MOCK_USER } from '../../../../models/constants/admin';
+import { MOCK_USER } from '../../../../models/constants/mockUser';
 
 export class MainContentLayout extends Component<IMainContentLayoutProps, { messageList: MessageList }> {
   constructor(props: IMainContentLayoutProps) {

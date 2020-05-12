@@ -1,3 +1,3 @@
 export interface IWithQueryFromUrlInjectedProps {
-  param: string;
+  dataId: string;
 }
