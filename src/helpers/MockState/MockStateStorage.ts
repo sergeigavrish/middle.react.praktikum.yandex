@@ -14,6 +14,7 @@ import { IMockChatInfo } from './interfaces/IMockChatInfo';
 import { IMockMessage } from './interfaces/IMockMessage';
 import { IUser } from '../../models/interfaces/IUser';
 import { IStorage } from './interfaces/IStorage';
+import { MOCK_USER } from '../../models/constants/mockUser';
 
 export class MockStateStorage implements IStorage {
   private userStorage: IHashTable<IUser> = {};
@@ -40,6 +41,11 @@ export class MockStateStorage implements IStorage {
     return this.messageStorage[id];
   }
 
+  addMessage(chatId: string, message: IMockMessage) {
+    this.messageStorage[chatId].push(message);
+  }
+
+
   private init() {
     const {
       chatNames,
@@ -48,6 +54,7 @@ export class MockStateStorage implements IStorage {
       messages,
     } = dictionary;
     this.initializeStorage(chatNames, chatGuids, usernames, messages);
+    this.userStorage[MOCK_USER.guid] = MOCK_USER;
   }
 
   private initializeStorage(chatNames: string[], chatGuids: string[], usernames: string[], messages: string[]) {

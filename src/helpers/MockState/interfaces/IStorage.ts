@@ -8,4 +8,5 @@ export interface IStorage {
   getChats(): IHashTable<IMockChatInfo>;
   getMessages(): IHashTable<IMockMessage[]>;
   getChatHistoryByChatId(id: string): IMockMessage[];
+  addMessage(chatId: string, message: IMockMessage): void;
 }
