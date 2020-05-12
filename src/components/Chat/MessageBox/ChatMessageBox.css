@@ -1,0 +1,17 @@
+@import '../../../styles/variables.css';
+
+.message-box-wrap {
+  margin: 0 auto;
+  max-width: 560px;
+  padding: var(--message-box-padding);
+}
+
+.message-box {
+  height: var(--message-box-height);
+}
+
+.message-box-control {
+  height: 100%;
+  width: 100%;
+  resize: none;
+}

@@ -13,7 +13,7 @@ import { getChatList } from '../../../services/chatService';
 import './MainSidebar.css';
 
 export class MainSidebar extends Component<IWithQueryFromUrlInjectedProps, IMainSidebarState> {
-  constructor(props: { param: string }) {
+  constructor(props: IWithQueryFromUrlInjectedProps) {
     super(props);
     this.state = {
       chatList: [],
@@ -39,10 +39,10 @@ export class MainSidebar extends Component<IWithQueryFromUrlInjectedProps, IMain
 
   render() {
     const sortedChatList = this.getSortedChatList();
-    const { param } = this.props;
+    const { dataId } = this.props;
     return (
-      <aside className={`sidebar ${param ? 'hidden' : 'displayed'}`}>
-        <ChatList selectedChat={param} chatList={sortedChatList} />
+      <aside className={`sidebar ${dataId ? 'hidden' : 'displayed'}`}>
+        <ChatList selectedChat={dataId} chatList={sortedChatList} />
       </aside>
     );
   }

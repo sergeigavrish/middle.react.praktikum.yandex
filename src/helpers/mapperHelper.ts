@@ -14,3 +14,19 @@ export const mapTextMessageDtoToTextMessage = (arr: ITextMessageDto[]): ITextMes
     return message;
   });
 };
+
+export const mapTextMessageToDto = ({
+  content,
+  author,
+  timestamp,
+  guid,
+  type,
+}: ITextMessage): ITextMessageDto => {
+  return {
+    content,
+    author,
+    timestamp,
+    guid,
+    type,
+  };
+};

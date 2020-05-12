@@ -5,14 +5,6 @@
   margin: var(--spacing-small) var(--spacing-base) var(--spacing-small) var(--spacing-large);
 }
 
-.message.chained {
-  margin: calc(var(--spacing-half) * -1) var(--spacing-base) calc(var(--spacing-half) * -1) var(--spacing-large);
-}
-
-.message.chained:last-child {
-  margin-bottom: var(--spacing-small);
-}
-
 .message.chained > .message__icon,
 .message.chained > .message__body > .message__author {
   display: none;
@@ -39,6 +31,7 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .message__author {

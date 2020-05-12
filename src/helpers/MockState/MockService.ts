@@ -25,6 +25,13 @@ class MockService {
     return Promise.resolve(messageList);
   }
 
+  sendMessagetoChat(chatId: string, dto: ITextMessageDto): Promise<void> {
+    const { author, ...rest } = dto;
+    const message = { ...rest, authorId: author.guid };
+    this.storage.addMessage(chatId, message);
+    return Promise.resolve();
+  }
+
   private mapToMessage(history: IMockMessage[]) {
     return history.map((m) => {
       const { authorId, ...lastMessage } = m;

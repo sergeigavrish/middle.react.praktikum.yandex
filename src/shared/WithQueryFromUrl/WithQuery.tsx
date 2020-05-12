@@ -10,13 +10,11 @@ import { queryParser } from '../../helpers/queryParser';
 
 export function WithQuery(key: UrlQueryParams) {
   return <PropsType extends IWithQueryFromUrlInjectedProps>(ChildComponent: ComponentType<PropsType>) => {
-    return ({
-      location,
-      ...props
-    }: WithQueryFromUrlProps<PropsType>) => {
+    return (props: WithQueryFromUrlProps<PropsType>) => {
+      const { location } = props;
       const queryMap = queryParser.execute(location?.search ?? '');
       const query = queryMap.get(key);
-      return <ChildComponent param={query} {...props as WithQueryChildProps<PropsType>} />;
+      return <ChildComponent dataId={query} {...props as WithQueryChildProps<PropsType>} />;
     };
   };
 }

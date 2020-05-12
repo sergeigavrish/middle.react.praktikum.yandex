@@ -1,33 +1,22 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { FC } from 'react';
+
+import { MainContentLayoutWithRouterAndQueryAndPreload } from './Layout/MainContentLayout';
+import { ChatEmptyPage } from '../../Chat/EmptyPage/ChatEmptyPage';
+import { WithQuery } from '../../../shared/WithQueryFromUrl/WithQuery';
 
 import { UrlQueryParams } from '../../../models/types/UrlQueryParams';
-import { WithQuery } from '../../../shared/WithQueryFromUrl/WithQuery';
-import { ChatEmptyPage } from '../../Chat/EmptyPage/ChatEmptyPage';
-import { MainContentLayout } from './Layout/MainContentLayout';
-
-import { IMainContentProps } from './IMainContentProps';
+import { IWithQueryFromUrlInjectedProps } from '../../../shared/WithQueryFromUrl/IWithQueryFromUrlInjectedProps';
 
 import './MainContent.css';
 
-export class MainContent extends Component<IMainContentProps> {
-  private onChatClosed = () => {
-    const { history } = this.props;
-    history.push('/');
-  }
+export const MainContent: FC<IWithQueryFromUrlInjectedProps> = ({ dataId }: IWithQueryFromUrlInjectedProps) => (
+  <div className={`content ${dataId ? 'displayed' : 'hidden'}`}>
+    {
+      dataId
+        ? <MainContentLayoutWithRouterAndQueryAndPreload />
+        : <ChatEmptyPage />
+    }
+  </div>
+);
 
-  render() {
-    const { param } = this.props;
-    return (
-      <div className={`content ${param ? 'displayed' : 'hidden'}`}>
-        {
-          param
-            ? <MainContentLayout onChatClosed={this.onChatClosed} />
-            : <ChatEmptyPage />
-        }
-      </div>
-    );
-  }
-}
-
-export const MainContentWithRouterAndQuery = WithQuery(UrlQueryParams.chatId)(withRouter(MainContent));
+export const MainContentWithQuery = WithQuery(UrlQueryParams.chatId)(MainContent);
