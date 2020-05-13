@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ab8419022486a693c4c0de9204895c82",
+    "revision": "880e995fb97bad766386e4c9474e3555",
     "url": "/middle.react.praktikum.yandex/index.html"
   },
   {
-    "revision": "6f146a77d6896d7df208",
+    "revision": "f5178472864926132ead",
     "url": "/middle.react.praktikum.yandex/static/css/main.50114719.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/middle.react.praktikum.yandex/static/js/2.654e40ac.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "6f146a77d6896d7df208",
-    "url": "/middle.react.praktikum.yandex/static/js/main.0350893a.chunk.js"
+    "revision": "f5178472864926132ead",
+    "url": "/middle.react.praktikum.yandex/static/js/main.a835b741.chunk.js"
   },
   {
     "revision": "4decdeb8204cfe9224a2",
