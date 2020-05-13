@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { v4 as uuid } from 'uuid';
 
 import { ChatHistory } from '../../../Chat/History/ChatHistory';
-
-import { IMainContentLayoutProps } from './IMainContentLayoutProps';
-import { ChatMessageBox } from '../../../Chat/MessageBox/ChatMessageBox';
-import { MessageList } from '../../../../models/types/MessageList';
-import { WithPreload } from '../../../../shared/WithPreload/WithPreload';
-import { getChatHistoryByChatId, sendMessagetoChat } from '../../../../services/chatService';
 import { WithQuery } from '../../../../shared/WithQueryFromUrl/WithQuery';
-import { UrlQueryParams } from '../../../../models/types/UrlQueryParams';
-import { MessageTypes } from '../../../../models/enums/MessageTypes';
-import { ITextMessage } from '../../../../models/interfaces/IMessage';
-import { MOCK_USER } from '../../../../models/constants/mockUser';
+import { WithPreload } from '../../../../shared/WithPreload/WithPreload';
+import { ChatMessageBox } from '../../../Chat/MessageBox/ChatMessageBox';
 
-export class MainContentLayout extends Component<IMainContentLayoutProps, { messageList: MessageList }> {
-  constructor(props: IMainContentLayoutProps) {
+import { MessageList } from '../../../../models/types/MessageList';
+import { UrlQueryParams } from '../../../../models/types/UrlQueryParams';
+
+import { getChatHistoryByChatId, sendMessagetoChat } from '../../../../services/chatService';
+import { isTextMessageChained } from '../../../../helpers/utils';
+import { navigate } from '../../../../helpers/history';
+import { IWithPreloadInjectedProps } from '../../../../shared/WithPreload/IWithPreloadInjectedProps';
+
+export class MainContentLayout extends Component<IWithPreloadInjectedProps<MessageList>, { messageList: MessageList }> {
+  constructor(props: IWithPreloadInjectedProps<MessageList>) {
     super(props);
     this.state = {
       messageList: props.data,
@@ -24,33 +23,26 @@ export class MainContentLayout extends Component<IMainContentLayoutProps, { mess
   }
 
   private onChatClosed = () => {
-    const { history } = this.props;
-    history.push('/');
+    navigate('/');
   }
 
   private onSend = (content: string) => {
     const { dataId } = this.props;
-    const { messageList } = this.state;
-    const lastMessage = messageList[messageList.length - 1];
-    let isChained: boolean;
-    if (lastMessage.type !== MessageTypes.Service) {
-      isChained = lastMessage.author.guid === MOCK_USER.guid;
-    } else {
-      isChained = false;
+    if (!content.trim().length) {
+      return;
     }
-    const message: ITextMessage = {
-      guid: uuid(),
-      timestamp: new Date().getTime(),
-      author: MOCK_USER,
-      content,
-      type: MessageTypes.Text,
-      isChained,
-    };
-    this.setState((prevState) => ({
-      ...prevState,
-      messageList: prevState.messageList.concat(message),
-    }));
-    sendMessagetoChat(dataId, message);
+    sendMessagetoChat(dataId, content)
+      .then((res) => {
+        this.setState((prevState) => {
+          const { messageList } = prevState;
+          const lastMessage = messageList[messageList.length - 1];
+          const message = isTextMessageChained(res, lastMessage);
+          return {
+            ...prevState,
+            messageList: messageList.concat(message),
+          };
+        });
+      });
   }
 
   render() {

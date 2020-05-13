@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { withRouter } from 'react-router-dom';
 
 import { MainContentLayoutWithRouterAndQueryAndPreload } from './Layout/MainContentLayout';
 import { ChatEmptyPage } from '../../Chat/EmptyPage/ChatEmptyPage';
@@ -19,4 +20,4 @@ export const MainContent: FC<IWithQueryFromUrlInjectedProps> = ({ dataId }: IWit
   </div>
 );
 
-export const MainContentWithQuery = WithQuery(UrlQueryParams.chatId)(MainContent);
+export const MainContentWithQuery = withRouter(WithQuery(UrlQueryParams.chatId)(MainContent));
