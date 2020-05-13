@@ -1,32 +1,39 @@
+import { v4 as uuid } from 'uuid';
+
 import { ITextMessageDto, ITextMessage } from '../models/interfaces/IMessage';
 
-import { removeTimeFromTimestamp } from './dateHelper';
+import { MessageTypes } from '../models/enums/MessageTypes';
+import { IUser } from '../models/interfaces/IUser';
+import { MessageList } from '../models/types/MessageList';
+import { isTextMessageChained } from './utils';
 
-export const mapTextMessageDtoToTextMessage = (arr: ITextMessageDto[]): ITextMessage[] => {
-  return arr.map((dto, i) => {
-    const message: ITextMessage = { ...dto, isChained: false };
-    const prevMessage = arr[i - 1];
-    const isSameAuthor = prevMessage?.author.guid === dto.author.guid;
-    const isSameDate = removeTimeFromTimestamp(prevMessage?.timestamp) === removeTimeFromTimestamp(dto.timestamp);
-    if (isSameAuthor && isSameDate) {
-      message.isChained = true;
+export const mapTextMessageDtoToTextMessage = (arr: MessageList): MessageList => {
+  return arr.map((m, i) => {
+    if (m.type === MessageTypes.Text) {
+      const prevMessage = arr[i - 1];
+      return isTextMessageChained(m, prevMessage);
     }
-    return message;
+    return m;
   });
 };
 
-export const mapTextMessageToDto = ({
-  content,
-  author,
-  timestamp,
-  guid,
-  type,
-}: ITextMessage): ITextMessageDto => {
+export const maptMessageToTextMessageDto = (content: string, author: IUser): ITextMessageDto => {
   return {
     content,
     author,
-    timestamp,
-    guid,
-    type,
+    timestamp: new Date().getTime(),
+    guid: uuid(),
+    type: MessageTypes.Text,
+  };
+};
+
+export const maptTextMessageDtoToTextMessage = (dto: ITextMessageDto): ITextMessage => {
+  return {
+    content: dto.content,
+    author: dto.author,
+    timestamp: dto.timestamp,
+    guid: dto.guid,
+    type: MessageTypes.Text,
+    isChained: false,
   };
 };
