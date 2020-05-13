@@ -1,8 +1,14 @@
 import { v4 as uuid } from 'uuid';
 
-import { IHashTable } from '../../models/interfaces/IHashTable';
-
 import dictionary from './mockStateDictionary.json';
+
+import { IHashTable } from '../../models/interfaces/IHashTable';
+import { IMockChatInfo } from './interfaces/IMockChatInfo';
+import { IMockMessage } from './interfaces/IMockMessage';
+import { IUser } from '../../models/interfaces/IUser';
+import { IStorage } from './interfaces/IStorage';
+import { IMockUser } from './interfaces/IMockUser';
+import { IAuthData } from '../../models/interfaces/IAuthData';
 
 import {
   storageAssembler,
@@ -10,12 +16,7 @@ import {
   chatInfoFactoryWrapper,
   messagesFactoryWrapper,
 } from './mockStateFactories';
-import { IMockChatInfo } from './interfaces/IMockChatInfo';
-import { IMockMessage } from './interfaces/IMockMessage';
-import { IUser } from '../../models/interfaces/IUser';
-import { IStorage } from './interfaces/IStorage';
-import { IMockUser } from './interfaces/IMockUser';
-import { IAuthData } from '../../models/interfaces/IAuthData';
+import { getUserData } from '../../services/sessionService';
 
 export class MockStateStorage implements IStorage {
   private userStorage: IHashTable<IMockUser> = {};
@@ -66,6 +67,7 @@ export class MockStateStorage implements IStorage {
       messages,
     } = dictionary;
     this.initializeStorage(chatNames, chatGuids, usernames, messages);
+    this.initMockUser();
   }
 
   private initializeStorage(chatNames: string[], chatGuids: string[], usernames: string[], messages: string[]) {
@@ -75,5 +77,12 @@ export class MockStateStorage implements IStorage {
       chatGuids,
       messagesFactoryWrapper(messages, Object.keys(this.userStorage)),
     );
+  }
+
+  private initMockUser() {
+    const user = getUserData();
+    if (user) {
+      this.userStorage[user.guid] = user;
+    }
   }
 }
