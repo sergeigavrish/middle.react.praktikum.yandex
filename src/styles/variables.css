@@ -7,4 +7,7 @@
   --spacing-double: 20px;
   --spacing-largest: 35px;
   --border-small: 3px solid #e6e6e6;
+  --avatar-width: 42px;
+  --message-box-height: 100px;
+  --message-box-padding: var(--spacing-base) var(--spacing-large) var(--spacing-largest);
 }

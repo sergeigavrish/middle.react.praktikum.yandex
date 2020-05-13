@@ -1,6 +1,14 @@
 import { v4 as uuid } from 'uuid';
 
+import dictionary from './mockStateDictionary.json';
+
 import { IHashTable } from '../../models/interfaces/IHashTable';
+import { IMockChatInfo } from './interfaces/IMockChatInfo';
+import { IMockMessage } from './interfaces/IMockMessage';
+import { IUser } from '../../models/interfaces/IUser';
+import { IStorage } from './interfaces/IStorage';
+import { IMockUser } from './interfaces/IMockUser';
+import { IAuthData } from '../../models/interfaces/IAuthData';
 
 import {
   storageAssembler,
@@ -8,29 +16,15 @@ import {
   chatInfoFactoryWrapper,
   messagesFactoryWrapper,
 } from './mockStateFactories';
-import { IMockChatInfo } from './interfaces/IMockChatInfo';
-import { IMockMessage } from './interfaces/IMockMessage';
-import { IUser } from '../../models/interfaces/IUser';
+import { getUserData } from '../../services/sessionService';
 
-export class MockStateStorage {
-  private userStorage: IHashTable<IUser> = {};
+export class MockStateStorage implements IStorage {
+  private userStorage: IHashTable<IMockUser> = {};
   private chatStorage: IHashTable<IMockChatInfo> = {};
   private messageStorage: IHashTable<IMockMessage[]> = {};
-  private initialized = false;
 
-  private async init() {
-    const { chatNames, usernames, messages } = await import('./mockStateDictionary.json');
-    this.initializeStorage(chatNames, usernames, messages);
-    this.initialized = true;
-  }
-
-  private initializeStorage(chatNames: string[], usernames: string[], messages: string[]) {
-    this.userStorage = storageAssembler<IUser>(usernames.map(() => uuid()), userFactoryWrapper(usernames));
-    this.chatStorage = storageAssembler<IMockChatInfo>(chatNames.map(() => uuid()), chatInfoFactoryWrapper(chatNames));
-    this.messageStorage = storageAssembler<IMockMessage[]>(
-      Object.keys(this.chatStorage),
-      messagesFactoryWrapper(messages, Object.keys(this.userStorage)),
-    );
+  constructor() {
+    this.init();
   }
 
   getUserById(id: string) {
@@ -49,10 +43,46 @@ export class MockStateStorage {
     return this.messageStorage[id];
   }
 
-  checkIfInitialized() {
-    if (this.initialized) {
-      return Promise.resolve();
+  addMessage(chatId: string, message: IMockMessage) {
+    this.messageStorage[chatId].push(message);
+  }
+
+  addUser(user: IMockUser) {
+    this.userStorage[user.guid] = user;
+  }
+
+  getUser(authData: IAuthData): IMockUser | null {
+    const user = Object.values(this.userStorage).filter((u) => u.name === authData.login)[0];
+    if (user && user.password === authData.password) {
+      return user;
     }
-    return this.init();
+    return null;
+  }
+
+  private init() {
+    const {
+      chatNames,
+      chatGuids,
+      usernames,
+      messages,
+    } = dictionary;
+    this.initializeStorage(chatNames, chatGuids, usernames, messages);
+    this.initMockUser();
+  }
+
+  private initializeStorage(chatNames: string[], chatGuids: string[], usernames: string[], messages: string[]) {
+    this.userStorage = storageAssembler<IUser>(usernames.map(() => uuid()), userFactoryWrapper(usernames));
+    this.chatStorage = storageAssembler<IMockChatInfo>(chatGuids, chatInfoFactoryWrapper(chatNames));
+    this.messageStorage = storageAssembler<IMockMessage[]>(
+      chatGuids,
+      messagesFactoryWrapper(messages, Object.keys(this.userStorage)),
+    );
+  }
+
+  private initMockUser() {
+    const user = getUserData();
+    if (user) {
+      this.userStorage[user.guid] = user;
+    }
   }
 }

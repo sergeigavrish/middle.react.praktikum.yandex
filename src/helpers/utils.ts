@@ -3,13 +3,14 @@ import { v4 as uuid } from 'uuid';
 import { ITextMessage } from '../models/interfaces/IMessage';
 import { MessageList } from '../models/types/MessageList';
 import { MessageTypes } from '../models/enums/MessageTypes';
+import { Message } from '../models/types/Message';
 
-import dateHelper from './dateHelper';
+import { removeTimeFromTimestamp } from './dateHelper';
 
-const addServiceMessageToChatHistory = (messageList: ITextMessage[]): MessageList => {
+export const addServiceMessageToChatHistory = (messageList: ITextMessage[]): MessageList => {
   const dateSet: Set<number> = new Set();
   return messageList.reduce((acc: MessageList, m) => {
-    const timestamp = dateHelper.removeTimeFromTimestamp(m.timestamp);
+    const timestamp = removeTimeFromTimestamp(m.timestamp);
     if (!dateSet.has(timestamp)) {
       dateSet.add(timestamp);
       acc.push({
@@ -23,8 +24,11 @@ const addServiceMessageToChatHistory = (messageList: ITextMessage[]): MessageLis
   }, []);
 };
 
-const utils = {
-  addServiceMessageToChatHistory,
+export const isTextMessageChained = (current: ITextMessage, prev: Message): ITextMessage => {
+  const isSameAuthor = prev?.type !== MessageTypes.Service && prev?.author.guid === current.author.guid;
+  const isSameDate = removeTimeFromTimestamp(prev?.timestamp) === removeTimeFromTimestamp(current.timestamp);
+  if (isSameAuthor && isSameDate) {
+    return { ...current, isChained: true };
+  }
+  return { ...current, isChained: false };
 };
-
-export default utils;

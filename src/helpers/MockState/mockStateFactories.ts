@@ -16,6 +16,7 @@ export function messagesFactory(contentStorage: string[], authorIds: string[]): 
     const authorId = authorIds[randomInteger(authorIds.length - 1)];
     const content = contentStorage[randomInteger(contentStorage.length - 1)];
     const timestamp = randomDate(new Date(2020, 0, 1), new Date());
+    const isChained = !!randomInteger(1);
     messages.push({
       guid,
       authorId,
@@ -23,6 +24,15 @@ export function messagesFactory(contentStorage: string[], authorIds: string[]): 
       timestamp,
       type: MessageTypes.Text,
     });
+    if (isChained) {
+      messages.push({
+        guid: uuid(),
+        authorId,
+        content: contentStorage[randomInteger(contentStorage.length - 1)],
+        timestamp: timestamp + randomInteger(1200000),
+        type: MessageTypes.Text,
+      });
+    }
   }
   return messages;
 }

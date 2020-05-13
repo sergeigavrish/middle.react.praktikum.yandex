@@ -5,8 +5,8 @@ import { ChatMessageWrapper } from '../MessageWrapper/ChatMessageWrapper';
 
 import { ITextMessage } from '../../../models/interfaces/IMessage';
 
-import resources from '../../../models/constants/resources';
-import dateHelper from '../../../helpers/dateHelper';
+import { resources } from '../../../models/constants/resources';
+import { getTime } from '../../../helpers/dateHelper';
 
 import './ChatTextMessage.css';
 
@@ -14,10 +14,11 @@ export const ChatTextMessage: FunctionComponent<ITextMessage> = ({
   author,
   content,
   timestamp,
+  isChained,
 }: ITextMessage) => (
   <ChatMessageWrapper>
-    <section style={{ position: 'relative' }} className="message">
-      <Avatar className="message__icon" src={author.avatar} alt={resources.chat.avatar.messageAuthor} />
+    <section className={`message ${isChained ? 'chained' : ''}`}>
+      <Avatar className="message__icon" src={author.avatar} alt={resources.avatar.messageAuthor} />
       <div className="message__body">
         <span className="message__author">{author.name}</span>
         <div className="message__content">
@@ -25,7 +26,7 @@ export const ChatTextMessage: FunctionComponent<ITextMessage> = ({
         </div>
       </div>
       <div className="message__time">
-        <span>{dateHelper.getTime(timestamp)}</span>
+        <span>{getTime(timestamp)}</span>
       </div>
     </section>
   </ChatMessageWrapper>

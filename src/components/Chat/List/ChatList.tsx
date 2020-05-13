@@ -1,15 +1,19 @@
-import React, { FunctionComponent } from 'react';
+import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 import { ChatCard } from '../Card/ChatCard';
 
 import { IChatListProps } from './IChatListProps';
+import { UrlQueryParams } from '../../../models/types/UrlQueryParams';
 
-export const ChatList: FunctionComponent<IChatListProps> = ({ chatList, selectedChat, onChatSelected }: IChatListProps) => (
+export const ChatList: FC<IChatListProps> = ({ chatList, selectedChat }: IChatListProps) => (
   <section>
     {chatList.map((item) => {
       const isSelected = selectedChat === item.guid;
       return (
-        <ChatCard {...item} isSelected={isSelected} onChatSelected={onChatSelected} key={item.guid} />
+        <Link className="link-reset" to={`/chat?${UrlQueryParams.chatId}=${item.guid}`} key={item.guid}>
+          <ChatCard {...item} isSelected={isSelected} />
+        </Link>
       );
     })}
   </section>

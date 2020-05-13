@@ -28,3 +28,9 @@ code {
   font-size: inherit;
   background-color: transparent;
 }
+
+.link-reset {
+  text-decoration: none;
+  cursor: default;
+  color: inherit;
+}

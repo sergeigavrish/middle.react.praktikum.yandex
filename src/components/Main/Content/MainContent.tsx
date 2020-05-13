@@ -1,18 +1,23 @@
-import React, { FunctionComponent } from 'react';
+import React, { FC } from 'react';
+import { withRouter } from 'react-router-dom';
 
-import { ChatHistory } from '../../Chat/History/ChatHistory';
+import { MainContentLayoutWithRouterAndQueryAndPreload } from './Layout/MainContentLayout';
+import { ChatEmptyPage } from '../../Chat/EmptyPage/ChatEmptyPage';
+import { WithQuery } from '../../../shared/WithQueryFromUrl/WithQuery';
 
-import { IMainContentProps } from './IMainContentProps';
+import { UrlQueryParams } from '../../../models/types/UrlQueryParams';
+import { IWithQueryFromUrlInjectedProps } from '../../../shared/WithQueryFromUrl/IWithQueryFromUrlInjectedProps';
 
 import './MainContent.css';
 
-export const MainContent: FunctionComponent<IMainContentProps> = ({
-  onChatClosed,
-  messageList,
-  className,
-}: IMainContentProps) => (
-  <div className={`content ${className}`}>
-    <button className="close-chat-button button-reset" onClick={onChatClosed} type="button">X</button>
-    <ChatHistory messageList={messageList} />
+export const MainContent: FC<IWithQueryFromUrlInjectedProps> = ({ dataId }: IWithQueryFromUrlInjectedProps) => (
+  <div className={`content ${dataId ? 'displayed' : 'hidden'}`}>
+    {
+      dataId
+        ? <MainContentLayoutWithRouterAndQueryAndPreload />
+        : <ChatEmptyPage />
+    }
   </div>
 );
+
+export const MainContentWithQuery = withRouter(WithQuery(UrlQueryParams.chatId)(MainContent));
