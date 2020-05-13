@@ -3,6 +3,7 @@ import { v4 as uuid } from 'uuid';
 import { ITextMessage } from '../models/interfaces/IMessage';
 import { MessageList } from '../models/types/MessageList';
 import { MessageTypes } from '../models/enums/MessageTypes';
+import { Message } from '../models/types/Message';
 
 import { removeTimeFromTimestamp } from './dateHelper';
 
@@ -21,4 +22,13 @@ export const addServiceMessageToChatHistory = (messageList: ITextMessage[]): Mes
     acc.push(m);
     return acc;
   }, []);
+};
+
+export const isTextMessageChained = (current: ITextMessage, prev: Message): ITextMessage => {
+  const isSameAuthor = prev?.type !== MessageTypes.Service && prev?.author.guid === current.author.guid;
+  const isSameDate = removeTimeFromTimestamp(prev?.timestamp) === removeTimeFromTimestamp(current.timestamp);
+  if (isSameAuthor && isSameDate) {
+    return { ...current, isChained: true };
+  }
+  return { ...current, isChained: false };
 };

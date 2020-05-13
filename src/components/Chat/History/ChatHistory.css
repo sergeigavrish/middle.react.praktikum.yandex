@@ -1,6 +1,6 @@
 @import "../../../styles/variables.css";
 
 .message-history {
-  height: calc(100% - var(--message-box-height) - var(--message-box-padding));
+  height: calc(100% - var(--message-box-height) - var(--spacing-base) - var(--spacing-large) - var(--spacing-largest));
   overflow: auto;
 }
