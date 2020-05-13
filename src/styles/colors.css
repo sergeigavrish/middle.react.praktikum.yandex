@@ -4,4 +4,5 @@
   --default-background-color: #ffffff;
   --selected-chat-background-color: #e5e5e5;
   --service-message-background-color: #eaeae9;
+  --form-validation-error-color: #ff0000;
 }
