@@ -1,0 +1,33 @@
+.form-field {
+  text-align: initial;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px 10px;
+  height: 80px;
+}
+
+.form-field__label {
+  text-transform: capitalize;
+}
+
+.form-field__control {
+  border: none;
+  box-shadow: 0 1px 0 0 #e8e8e8;
+  padding: 0 5px;
+}
+
+.form-field__control:focus {
+  box-shadow: none;
+  outline: none;
+  box-shadow: 0 2px 0 0 #77b7e4;
+}
+
+.form-field__error {
+  color: var(--form-validation-error-color);
+  font-size: 0.85em;
+  line-height: 1.2;
+  font-weight: 500;
+  height: 27px;
+}

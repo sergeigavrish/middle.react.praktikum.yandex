@@ -1,12 +1,18 @@
 import React, { Component, FormEvent } from 'react';
+import { Link } from 'react-router-dom';
+
+import { FormField } from '../../../shared/FormField/FormField';
 
 import { AuthFormFields } from '../../../models/types/AuthFormFields';
 import { StringParams } from '../../../models/types/StringParams';
 import { IAuthFormProps } from './IAuthFormProps';
 import { IAuthFormState } from './IAuthFormState';
+import { Routes } from '../../../models/types/Routes';
+import { AuthType } from '../../../models/types/AuthType';
+
+import { resources } from '../../../models/constants/resources';
 
 import './Auth.css';
-import { resources } from '../../../models/constants/resources';
 
 export class Auth extends Component<IAuthFormProps, IAuthFormState> {
   constructor(props: IAuthFormProps) {
@@ -90,36 +96,37 @@ export class Auth extends Component<IAuthFormProps, IAuthFormState> {
 
   render() {
     const { login, password, errors } = this.state;
-    const { action } = this.props;
+    const { type } = this.props;
+    const isSignIn = type === AuthType.SIGN_IN;
+    const action = isSignIn ? resources.auth.actions.signIn : resources.auth.actions.signUp;
+    const link = isSignIn ? Routes.REGISTER : Routes.LOGIN;
+    const linkText = isSignIn ? resources.auth.link.signIn : resources.auth.link.signUp;
     return (
-      <div className="auth-form-wrap">
-        <form onSubmit={this.onSubmit} className="auth-form">
-          <label className="label" htmlFor="login">
-            <span>Login: </span>
-            <input
-              type="text"
-              className="control"
-              id="login"
+      <div className="auth-form-container center">
+        <div className="auth-form-wrap">
+          <h3 className="auth-form-header">{action}</h3>
+          <form onSubmit={this.onSubmit} className="auth-form center">
+            <FormField
+              label={AuthFormFields.LOGIN}
               value={login}
+              error={errors.login}
               onBlur={this.onBlur(AuthFormFields.LOGIN)}
               onChange={this.onChange(AuthFormFields.LOGIN)}
             />
-            <span className="error">{errors.login}</span>
-          </label>
-          <label className="label" htmlFor="password">
-            <span>Password: </span>
-            <input
-              type="password"
-              className="control"
-              id="password"
+            <FormField
+              label={AuthFormFields.PASSWORD}
               value={password}
+              error={errors.password}
+              type="password"
               onBlur={this.onBlur(AuthFormFields.PASSWORD)}
               onChange={this.onChange(AuthFormFields.PASSWORD)}
             />
-            <span className="error">{errors.password}</span>
-          </label>
-          <button className="button-reset register-form-button" type="submit">{action}</button>
-        </form>
+            <div className="auth-form__actions">
+              <Link to={link}>{linkText}</Link>
+              <button className="button-reset auth-form__button" type="submit">{action}</button>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }
