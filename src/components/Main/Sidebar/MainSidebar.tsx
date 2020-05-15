@@ -42,7 +42,9 @@ export class MainSidebar extends Component<IWithQueryFromUrlInjectedProps, IMain
     const { dataId } = this.props;
     return (
       <aside className={`sidebar ${dataId ? 'hidden' : 'displayed'}`}>
-        <ChatList selectedChat={dataId} chatList={sortedChatList} />
+        <div className="sidebar-content-wrap">
+          <ChatList selectedChat={dataId} chatList={sortedChatList} />
+        </div>
       </aside>
     );
   }
