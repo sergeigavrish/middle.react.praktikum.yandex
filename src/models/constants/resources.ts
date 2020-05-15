@@ -11,8 +11,12 @@ export const resources = {
   },
   auth: {
     actions: {
-      signIn: 'Sign In',
-      signUp: 'Sign Up',
+      signIn: 'login',
+      signUp: 'sign up',
+    },
+    link: {
+      signIn: 'Doesn\'t have an account?',
+      signUp: 'Already have an account?',
     },
     validation: {
       required: '{{FIELD}} is required',
