@@ -8,9 +8,9 @@ import { MessageTypes } from '../../../models/enums/MessageTypes';
 
 import './ChatHistory.css';
 
-export const ChatHistory: FC<IChatHistoryProps> = ({ messageList }: IChatHistoryProps) => (
+export const ChatHistory: FC<IChatHistoryProps> = ({ messageList = [] }: IChatHistoryProps) => (
   <div className="message-history">
-    {(messageList || []).map((message) => {
+    {messageList.map((message) => {
       switch (message.type) {
         case MessageTypes.Service:
           return <ChatServiceMessage key={message.guid} {...message} />;
