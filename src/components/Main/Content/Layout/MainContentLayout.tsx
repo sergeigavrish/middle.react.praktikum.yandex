@@ -20,7 +20,7 @@ export class MainContentLayout extends Component<IWithPreloadInjectedProps<Messa
   constructor(props: IWithPreloadInjectedProps<MessageList>) {
     super(props);
     this.state = {
-      messageList: props.data,
+      messageList: props.data || [],
     };
   }
 
