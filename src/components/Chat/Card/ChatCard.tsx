@@ -7,7 +7,7 @@ import { ChatCardMeta } from './Meta/ChatCardMeta';
 import { ChatCardMessage } from './Message/ChatCardMessage';
 
 import { getDate } from '../../../helpers/dateHelper';
-import { resources } from '../../../models/constants/resources';
+import { resources } from '../../../constants/resources';
 
 import './ChatCard.css';
 

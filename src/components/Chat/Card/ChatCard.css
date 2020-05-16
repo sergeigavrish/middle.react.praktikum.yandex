@@ -3,7 +3,7 @@
 
 .card-wrap {
   width: 100%;
-  padding: 5px 15px;
+  padding: var(--spacing-half) var(--spacing-large);
 }
 
 .card-wrap.selected {
