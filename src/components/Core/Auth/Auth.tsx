@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 
 import { FormField } from '../../../shared/FormField/FormField';
 
-import { AuthFormFields } from '../../../models/types/AuthFormFields';
-import { StringParams } from '../../../models/types/StringParams';
+import { AuthFormFields } from '../../../enums/AuthFormFields';
+import { StringParams } from '../../../enums/StringParams';
 import { IAuthFormProps } from './IAuthFormProps';
 import { IAuthFormState } from './IAuthFormState';
-import { Routes } from '../../../models/types/Routes';
-import { AuthType } from '../../../models/types/AuthType';
+import { Routes } from '../../../enums/Routes';
+import { AuthType } from '../../../enums/AuthType';
 
-import { resources } from '../../../models/constants/resources';
+import { resources } from '../../../constants/resources';
 
 import './Auth.css';
 
@@ -67,9 +67,9 @@ export class Auth extends Component<IAuthFormProps, IAuthFormState> {
 
   private validate(field: AuthFormFields, value: string) {
     if (field === AuthFormFields.LOGIN) {
-      return this.validateLogin(value).replace(new RegExp(StringParams.FIELD, 'g'), field);
+      return this.validateLogin(value).replace(StringParams.FIELD, field);
     }
-    return this.validatePassword(value).replace(new RegExp(StringParams.FIELD, 'g'), field);
+    return this.validatePassword(value).replace(StringParams.FIELD, field);
   }
 
   private validateLogin(value: string) {
