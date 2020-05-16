@@ -14,14 +14,14 @@
 }
 
 .auth-form-header {
-  padding-left: 20px;
+  padding-left: var(--spacing-double);
   text-align: initial;
   text-transform: uppercase;
 }
 
 .auth-form {
   flex-direction: column;
-  padding: 10px;
+  padding: var(--spacing-base);
 }
 
 .auth-form__actions {
@@ -37,5 +37,5 @@
 }
 
 .auth-form__button:hover {
-  color: #77b7e4;
+  color: var(--shadow-focus-color);
 }

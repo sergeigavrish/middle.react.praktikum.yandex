@@ -1,4 +1,5 @@
 @import "../../../styles/variables.css";
+@import "../../../styles/colors.css";
 
 .message-box-wrap {
   margin: 0 auto;
@@ -24,7 +25,7 @@
   border: none;
   overflow: hidden scroll;
   display: block;
-  box-shadow: 0 1px 0 0 #e8e8e8;
+  box-shadow: 0 1px 0 0 var(--shadow-base-color);
   -ms-overflow-style: none;
 }
 
@@ -35,7 +36,7 @@
 .message-box-control:focus {
   box-shadow: none;
   outline: none;
-  box-shadow: 0 2px 0 0 #77b7e4;
+  box-shadow: 0 2px 0 0 var(--shadow-focus-color);
 }
 
 .message-box-button {
