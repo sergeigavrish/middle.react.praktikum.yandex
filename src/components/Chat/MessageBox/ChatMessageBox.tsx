@@ -4,7 +4,7 @@ import { SendIcon } from '../../../shared/SendIcon/SendIcon';
 
 import { IChatMessageBoxProps } from './IChatMessageBoxProps';
 import { IChatMessageBoxState } from './IChatMessageBoxState';
-import { ChatMessageBoxRows } from '../../../models/types/ChatMessageBoxRows';
+import { ChatMessageBoxRows } from '../../../enums/ChatMessageBoxRows';
 
 import './ChatMessageBox.css';
 
