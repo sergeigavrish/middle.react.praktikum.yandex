@@ -3,14 +3,14 @@
 import { v4 as uuid } from 'uuid';
 
 import { MockStateStorage } from './MockStateStorage';
-import { IChatInfo } from '../../models/interfaces/IChatInfo';
+import { IChatInfo } from '../../interfaces/IChatInfo';
 import { IMockChatInfo } from './interfaces/IMockChatInfo';
-import { IHashTable } from '../../models/interfaces/IHashTable';
+import { IHashTable } from '../../interfaces/IHashTable';
 import { IMockMessage } from './interfaces/IMockMessage';
-import { ITextMessageDto } from '../../models/interfaces/IMessage';
+import { ITextMessageDto } from '../../interfaces/IMessage';
 import { IStorage } from './interfaces/IStorage';
-import { IAuthData } from '../../models/interfaces/IAuthData';
-import { IUser } from '../../models/interfaces/IUser';
+import { IAuthData } from '../../interfaces/IAuthData';
+import { IUser } from '../../interfaces/IUser';
 import { IMockUser } from './interfaces/IMockUser';
 
 import avatar from '../../logo.svg';
@@ -60,8 +60,13 @@ class MockService {
   }
 
   private mapToMessage(m: IMockMessage): ITextMessageDto {
-    const { authorId, ...lastMessage } = m;
-    return { ...lastMessage, author: this.storage.getUserById(authorId) };
+    return {
+      guid: m.guid,
+      timestamp: m.timestamp,
+      author: this.storage.getUserById(m.authorId),
+      content: m.content,
+      type: m.type,
+    };
   }
 
   private mapToChatInfo(
@@ -72,13 +77,10 @@ class MockService {
       .map((chatId) => {
         const chat = chats[chatId];
         const chatMessages = messages[chat.guid];
-        const { authorId, ...lastMessage } = chatMessages[chatMessages.length - 1];
+        const message = chatMessages[chatMessages.length - 1];
         return {
           ...chat,
-          lastMessage: {
-            ...lastMessage,
-            author: this.storage.getUserById(authorId),
-          },
+          lastMessage: this.mapToMessage(message),
         };
       });
   }
