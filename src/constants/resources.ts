@@ -19,9 +19,9 @@ export const resources = {
       signUp: 'Already have an account?',
     },
     validation: {
-      required: '{{FIELD}} is required',
-      forbiddenFieldThreeChars: 'Forbidden {{FIELD}}. {{FIELD}} must contain minimum three characters: letters, numbers, hyphen or underscore',
-      forbiddenFieldEightChars: 'Forbidden {{FIELD}}. {{FIELD}} must contain minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character',
+      required: '[[FIELD]] is required',
+      forbiddenFieldThreeChars: '[[FIELD]] must contain minimum three characters: letters, numbers, hyphen or underscore',
+      forbiddenFieldEightChars: '[[FIELD]] must contain minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character',
     },
   },
 };
