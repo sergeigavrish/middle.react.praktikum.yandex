@@ -5,7 +5,7 @@ import { ChatList } from '../../Chat/List/ChatList';
 import { WithQuery } from '../../../shared/WithQueryFromUrl/WithQuery';
 
 import { IMainSidebarState } from './IMainSidebarState';
-import { UrlQueryParams } from '../../../models/types/UrlQueryParams';
+import { UrlQueryParams } from '../../../types/UrlQueryParams';
 import { IWithQueryFromUrlInjectedProps } from '../../../shared/WithQueryFromUrl/IWithQueryFromUrlInjectedProps';
 
 import { getChatList } from '../../../services/chatService';

@@ -6,10 +6,10 @@ import { Auth } from '../Auth/Auth';
 import { ProtectedRoute } from '../../../shared/ProtectedRoute/ProtectedRoute';
 
 import { signUp, signIn } from '../../../services/authSevice';
-import { NAME_PATTERN } from '../../../models/constants/NAME_PATTERN';
-import { PASSWORD_PATTERN } from '../../../models/constants/PASSWORD_PATTERN';
-import { Routes } from '../../../models/types/Routes';
-import { AuthType } from '../../../models/types/AuthType';
+import { NAME_PATTERN } from '../../../constants/NAME_PATTERN';
+import { PASSWORD_PATTERN } from '../../../constants/PASSWORD_PATTERN';
+import { Routes } from '../../../enums/Routes';
+import { AuthType } from '../../../enums/AuthType';
 
 import './App.css';
 

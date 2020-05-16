@@ -5,7 +5,7 @@ import { MainContentLayoutWithRouter } from './Layout/MainContentLayout';
 import { ChatEmptyPage } from '../../Chat/EmptyPage/ChatEmptyPage';
 import { WithQuery } from '../../../shared/WithQueryFromUrl/WithQuery';
 
-import { UrlQueryParams } from '../../../models/types/UrlQueryParams';
+import { UrlQueryParams } from '../../../types/UrlQueryParams';
 import { IWithQueryFromUrlInjectedProps } from '../../../shared/WithQueryFromUrl/IWithQueryFromUrlInjectedProps';
 
 import './MainContent.css';

@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 
 import { IChatMessageWrapperProps } from './IChatMessageWrapperProps';
 
-import { resources } from '../../../models/constants/resources';
+import { resources } from '../../../constants/resources';
 
 import './ChatMessageWrapper.css';
 

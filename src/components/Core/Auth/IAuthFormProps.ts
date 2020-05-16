@@ -1,5 +1,5 @@
-import { IAuthData } from '../../../models/interfaces/IAuthData';
-import { AuthType } from '../../../models/types/AuthType';
+import { IAuthData } from '../../../interfaces/IAuthData';
+import { AuthType } from '../../../enums/AuthType';
 
 export interface IAuthFormProps {
   onSubmit(authData: IAuthData): void;

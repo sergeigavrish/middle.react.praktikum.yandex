@@ -6,11 +6,11 @@ import { WithQuery } from '../../../../shared/WithQueryFromUrl/WithQuery';
 import { WithPreload } from '../../../../shared/WithPreload/WithPreload';
 import { ChatMessageBox } from '../../../Chat/MessageBox/ChatMessageBox';
 
-import { MessageList } from '../../../../models/types/MessageList';
-import { UrlQueryParams } from '../../../../models/types/UrlQueryParams';
+import { MessageList } from '../../../../types/MessageList';
+import { UrlQueryParams } from '../../../../types/UrlQueryParams';
 import { IWithPreloadInjectedProps } from '../../../../shared/WithPreload/IWithPreloadInjectedProps';
 import { isTextMessageChained } from '../../../../helpers/utils';
-import { Routes } from '../../../../models/types/Routes';
+import { Routes } from '../../../../enums/Routes';
 
 import { getChatHistoryByChatId, sendMessagetoChat } from '../../../../services/chatService';
 import { navigate } from '../../../../helpers/history';
@@ -64,6 +64,6 @@ export class MainContentLayout extends Component<IWithPreloadInjectedProps<Messa
   }
 }
 
-const withPreload = WithPreload(getChatHistoryByChatId)(MainContentLayout);
+const withPreload = WithPreload(getChatHistoryByChatId, MainContentLayout);
 const withQuery = WithQuery(UrlQueryParams.chatId)(withPreload);
 export const MainContentLayoutWithRouter = withRouter(withQuery);

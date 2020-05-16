@@ -2,10 +2,10 @@ import React, { FunctionComponent } from 'react';
 
 import { ChatMessageWrapper } from '../MessageWrapper/ChatMessageWrapper';
 
-import { IServiceMessage } from '../../../models/interfaces/IMessage';
+import { IServiceMessage } from '../../../interfaces/IMessage';
 
 import { getServiceMessage } from '../../../helpers/dateHelper';
-import { resources } from '../../../models/constants/resources';
+import { resources } from '../../../constants/resources';
 
 import './ChatServiceMessage.css';
 
