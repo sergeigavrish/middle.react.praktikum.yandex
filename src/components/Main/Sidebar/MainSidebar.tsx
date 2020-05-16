@@ -5,7 +5,7 @@ import { ChatList } from '../../Chat/List/ChatList';
 import { WithQuery } from '../../../shared/WithQueryFromUrl/WithQuery';
 
 import { IMainSidebarState } from './IMainSidebarState';
-import { UrlQueryParams } from '../../../models/types/UrlQueryParams';
+import { UrlQueryParams } from '../../../types/UrlQueryParams';
 import { IWithQueryFromUrlInjectedProps } from '../../../shared/WithQueryFromUrl/IWithQueryFromUrlInjectedProps';
 
 import { getChatList } from '../../../services/chatService';
@@ -42,7 +42,9 @@ export class MainSidebar extends Component<IWithQueryFromUrlInjectedProps, IMain
     const { dataId } = this.props;
     return (
       <aside className={`sidebar ${dataId ? 'hidden' : 'displayed'}`}>
-        <ChatList selectedChat={dataId} chatList={sortedChatList} />
+        <div className="sidebar-content-wrap">
+          <ChatList selectedChat={dataId} chatList={sortedChatList} />
+        </div>
       </aside>
     );
   }

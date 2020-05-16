@@ -1,4 +1,4 @@
-import { MessageTypes } from '../../../models/enums/MessageTypes';
+import { MessageTypes } from '../../../enums/MessageTypes';
 
 export interface IMockMessage {
   authorId: string;

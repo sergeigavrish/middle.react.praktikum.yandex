@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { withRouter } from 'react-router-dom';
 
-import { MainContentLayoutWithRouterAndQueryAndPreload } from './Layout/MainContentLayout';
+import { MainContentLayoutWithRouter } from './Layout/MainContentLayout';
 import { ChatEmptyPage } from '../../Chat/EmptyPage/ChatEmptyPage';
 import { WithQuery } from '../../../shared/WithQueryFromUrl/WithQuery';
 
-import { UrlQueryParams } from '../../../models/types/UrlQueryParams';
+import { UrlQueryParams } from '../../../types/UrlQueryParams';
 import { IWithQueryFromUrlInjectedProps } from '../../../shared/WithQueryFromUrl/IWithQueryFromUrlInjectedProps';
 
 import './MainContent.css';
@@ -14,7 +14,7 @@ export const MainContent: FC<IWithQueryFromUrlInjectedProps> = ({ dataId }: IWit
   <div className={`content ${dataId ? 'displayed' : 'hidden'}`}>
     {
       dataId
-        ? <MainContentLayoutWithRouterAndQueryAndPreload />
+        ? <MainContentLayoutWithRouter />
         : <ChatEmptyPage />
     }
   </div>

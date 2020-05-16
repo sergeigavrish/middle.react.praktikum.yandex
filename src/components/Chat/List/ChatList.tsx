@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { ChatCard } from '../Card/ChatCard';
 
 import { IChatListProps } from './IChatListProps';
-import { UrlQueryParams } from '../../../models/types/UrlQueryParams';
+import { UrlQueryParams } from '../../../types/UrlQueryParams';
 
 export const ChatList: FC<IChatListProps> = ({ chatList, selectedChat }: IChatListProps) => (
   <section>

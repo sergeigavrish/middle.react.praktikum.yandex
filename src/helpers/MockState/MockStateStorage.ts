@@ -2,13 +2,13 @@ import { v4 as uuid } from 'uuid';
 
 import dictionary from './mockStateDictionary.json';
 
-import { IHashTable } from '../../models/interfaces/IHashTable';
+import { IHashTable } from '../../interfaces/IHashTable';
 import { IMockChatInfo } from './interfaces/IMockChatInfo';
 import { IMockMessage } from './interfaces/IMockMessage';
-import { IUser } from '../../models/interfaces/IUser';
+import { IUser } from '../../interfaces/IUser';
 import { IStorage } from './interfaces/IStorage';
 import { IMockUser } from './interfaces/IMockUser';
-import { IAuthData } from '../../models/interfaces/IAuthData';
+import { IAuthData } from '../../interfaces/IAuthData';
 
 import {
   storageAssembler,
@@ -24,7 +24,14 @@ export class MockStateStorage implements IStorage {
   private messageStorage: IHashTable<IMockMessage[]> = {};
 
   constructor() {
-    this.init();
+    const {
+      chatNames,
+      chatGuids,
+      usernames,
+      messages,
+    } = dictionary;
+    this.initializeStorage(chatNames, chatGuids, usernames, messages);
+    this.initMockUser();
   }
 
   getUserById(id: string) {
@@ -57,17 +64,6 @@ export class MockStateStorage implements IStorage {
       return user;
     }
     return null;
-  }
-
-  private init() {
-    const {
-      chatNames,
-      chatGuids,
-      usernames,
-      messages,
-    } = dictionary;
-    this.initializeStorage(chatNames, chatGuids, usernames, messages);
-    this.initMockUser();
   }
 
   private initializeStorage(chatNames: string[], chatGuids: string[], usernames: string[], messages: string[]) {

@@ -1,4 +1,4 @@
-import { IChatInfo } from '../../../models/interfaces/IChatInfo';
+import { IChatInfo } from '../../../interfaces/IChatInfo';
 
 export interface IMainSidebarState {
   chatList: IChatInfo[];

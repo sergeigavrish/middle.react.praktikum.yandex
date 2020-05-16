@@ -1,9 +1,9 @@
 import { v4 as uuid } from 'uuid';
 
-import { ITextMessage } from '../models/interfaces/IMessage';
-import { MessageList } from '../models/types/MessageList';
-import { MessageTypes } from '../models/enums/MessageTypes';
-import { Message } from '../models/types/Message';
+import { ITextMessage } from '../interfaces/IMessage';
+import { MessageList } from '../types/MessageList';
+import { MessageTypes } from '../enums/MessageTypes';
+import { Message } from '../types/Message';
 
 import { removeTimeFromTimestamp } from './dateHelper';
 

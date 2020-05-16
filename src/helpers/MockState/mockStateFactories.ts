@@ -1,8 +1,8 @@
 import { v4 as uuid } from 'uuid';
 
 import { IMockMessage } from './interfaces/IMockMessage';
-import { MessageTypes } from '../../models/enums/MessageTypes';
-import { IHashTable } from '../../models/interfaces/IHashTable';
+import { MessageTypes } from '../../enums/MessageTypes';
+import { IHashTable } from '../../interfaces/IHashTable';
 
 import { randomInteger, randomDate } from './mockStateHelpers';
 

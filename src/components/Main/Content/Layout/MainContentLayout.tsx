@@ -6,24 +6,26 @@ import { WithQuery } from '../../../../shared/WithQueryFromUrl/WithQuery';
 import { WithPreload } from '../../../../shared/WithPreload/WithPreload';
 import { ChatMessageBox } from '../../../Chat/MessageBox/ChatMessageBox';
 
-import { MessageList } from '../../../../models/types/MessageList';
-import { UrlQueryParams } from '../../../../models/types/UrlQueryParams';
+import { MessageList } from '../../../../types/MessageList';
+import { UrlQueryParams } from '../../../../types/UrlQueryParams';
+import { IWithPreloadInjectedProps } from '../../../../shared/WithPreload/IWithPreloadInjectedProps';
+import { isTextMessageChained } from '../../../../helpers/utils';
+import { Routes } from '../../../../enums/Routes';
 
 import { getChatHistoryByChatId, sendMessagetoChat } from '../../../../services/chatService';
-import { isTextMessageChained } from '../../../../helpers/utils';
 import { navigate } from '../../../../helpers/history';
-import { IWithPreloadInjectedProps } from '../../../../shared/WithPreload/IWithPreloadInjectedProps';
+import { ArrowLeftIcon } from '../../../../shared/ArrowLeftIcon/ArrowLeftIcon';
 
 export class MainContentLayout extends Component<IWithPreloadInjectedProps<MessageList>, { messageList: MessageList }> {
   constructor(props: IWithPreloadInjectedProps<MessageList>) {
     super(props);
     this.state = {
-      messageList: props.data,
+      messageList: props.data || [],
     };
   }
 
   private onChatClosed = () => {
-    navigate('/');
+    navigate(Routes.HOME);
   }
 
   private onSend = (content: string) => {
@@ -42,6 +44,9 @@ export class MainContentLayout extends Component<IWithPreloadInjectedProps<Messa
             messageList: messageList.concat(message),
           };
         });
+      })
+      .catch((err) => {
+        console.error(err);
       });
   }
 
@@ -49,7 +54,9 @@ export class MainContentLayout extends Component<IWithPreloadInjectedProps<Messa
     const { messageList } = this.state;
     return (
       <>
-        <button className="close-chat-button button-reset" onClick={this.onChatClosed} type="button">X</button>
+        <button className="close-chat-button button-reset" onClick={this.onChatClosed} type="button">
+          <ArrowLeftIcon />
+        </button>
         <ChatHistory messageList={messageList} />
         <ChatMessageBox onSend={this.onSend} />
       </>
@@ -57,6 +64,6 @@ export class MainContentLayout extends Component<IWithPreloadInjectedProps<Messa
   }
 }
 
-const withPreload = WithPreload(getChatHistoryByChatId)(MainContentLayout);
+const withPreload = WithPreload(getChatHistoryByChatId, MainContentLayout);
 const withQuery = WithQuery(UrlQueryParams.chatId)(withPreload);
-export const MainContentLayoutWithRouterAndQueryAndPreload = withRouter(withQuery);
+export const MainContentLayoutWithRouter = withRouter(withQuery);

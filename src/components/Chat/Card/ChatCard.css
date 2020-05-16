@@ -3,7 +3,7 @@
 
 .card-wrap {
   width: 100%;
-  padding: 5px 15px;
+  padding: var(--spacing-half) var(--spacing-large);
 }
 
 .card-wrap.selected {
@@ -28,8 +28,10 @@
 
 .card__info {
   width: 100%;
-  display: flex;
   flex-direction: column;
   overflow: hidden;
-  justify-content: center;
+}
+
+.card__info.center {
+  align-items: normal;
 }

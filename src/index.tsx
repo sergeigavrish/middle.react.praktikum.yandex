@@ -4,7 +4,7 @@ import { Router } from 'react-router-dom';
 
 import * as serviceWorker from './serviceWorker';
 
-import App from './App';
+import { App } from './components/Core/App/App';
 
 import { history } from './helpers/history';
 
