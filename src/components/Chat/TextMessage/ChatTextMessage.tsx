@@ -3,21 +3,22 @@ import React, { FunctionComponent } from 'react';
 import { Avatar } from '../../../shared/Avatar/Avatar';
 import { ChatMessageWrapper } from '../MessageWrapper/ChatMessageWrapper';
 
-import { ITextMessage } from '../../../models/interfaces/IMessage';
+import { IChatTextMessageProps } from './IChatTextMessageProps';
 
-import { resources } from '../../../models/constants/resources';
+import { resources } from '../../../constants/resources';
 import { getTime } from '../../../helpers/dateHelper';
 
 import './ChatTextMessage.css';
 
-export const ChatTextMessage: FunctionComponent<ITextMessage> = ({
+export const ChatTextMessage: FunctionComponent<IChatTextMessageProps> = ({
   author,
   content,
   timestamp,
   isChained,
-}: ITextMessage) => (
+  forwardedRef,
+}: IChatTextMessageProps) => (
   <ChatMessageWrapper>
-    <section className={`message ${isChained ? 'chained' : ''}`}>
+    <section ref={forwardedRef} className={`message ${isChained ? 'chained' : ''}`}>
       <Avatar className="message__icon" src={author.avatar} alt={resources.avatar.messageAuthor} />
       <div className="message__body">
         <span className="message__author">{author.name}</span>
