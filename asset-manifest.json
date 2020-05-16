@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/middle.react.praktikum.yandex/static/css/main.50114719.chunk.css",
-    "main.js": "/middle.react.praktikum.yandex/static/js/main.a835b741.chunk.js",
-    "main.js.map": "/middle.react.praktikum.yandex/static/js/main.a835b741.chunk.js.map",
+    "main.css": "/middle.react.praktikum.yandex/static/css/main.6f85d50d.chunk.css",
+    "main.js": "/middle.react.praktikum.yandex/static/js/main.9bde75ae.chunk.js",
+    "main.js.map": "/middle.react.praktikum.yandex/static/js/main.9bde75ae.chunk.js.map",
     "runtime-main.js": "/middle.react.praktikum.yandex/static/js/runtime-main.c0119f50.js",
     "runtime-main.js.map": "/middle.react.praktikum.yandex/static/js/runtime-main.c0119f50.js.map",
-    "static/js/2.654e40ac.chunk.js": "/middle.react.praktikum.yandex/static/js/2.654e40ac.chunk.js",
-    "static/js/2.654e40ac.chunk.js.map": "/middle.react.praktikum.yandex/static/js/2.654e40ac.chunk.js.map",
+    "static/js/2.5bb6b321.chunk.js": "/middle.react.praktikum.yandex/static/js/2.5bb6b321.chunk.js",
+    "static/js/2.5bb6b321.chunk.js.map": "/middle.react.praktikum.yandex/static/js/2.5bb6b321.chunk.js.map",
     "index.html": "/middle.react.praktikum.yandex/index.html",
-    "precache-manifest.481709de586d1efaf9bae2d419ff35e2.js": "/middle.react.praktikum.yandex/precache-manifest.481709de586d1efaf9bae2d419ff35e2.js",
+    "precache-manifest.08dc681be57c4daa9be4d27a29d9b629.js": "/middle.react.praktikum.yandex/precache-manifest.08dc681be57c4daa9be4d27a29d9b629.js",
     "service-worker.js": "/middle.react.praktikum.yandex/service-worker.js",
-    "static/css/main.50114719.chunk.css.map": "/middle.react.praktikum.yandex/static/css/main.50114719.chunk.css.map",
-    "static/js/2.654e40ac.chunk.js.LICENSE.txt": "/middle.react.praktikum.yandex/static/js/2.654e40ac.chunk.js.LICENSE.txt",
+    "static/css/main.6f85d50d.chunk.css.map": "/middle.react.praktikum.yandex/static/css/main.6f85d50d.chunk.css.map",
+    "static/js/2.5bb6b321.chunk.js.LICENSE.txt": "/middle.react.praktikum.yandex/static/js/2.5bb6b321.chunk.js.LICENSE.txt",
     "static/media/logo.svg": "/middle.react.praktikum.yandex/static/media/logo.5d5d9eef.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.c0119f50.js",
-    "static/js/2.654e40ac.chunk.js",
-    "static/css/main.50114719.chunk.css",
-    "static/js/main.a835b741.chunk.js"
+    "static/js/2.5bb6b321.chunk.js",
+    "static/css/main.6f85d50d.chunk.css",
+    "static/js/main.9bde75ae.chunk.js"
   ]
 }
