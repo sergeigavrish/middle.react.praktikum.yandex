@@ -1,6 +1,6 @@
 import { createHashHistory } from 'history';
 
-import { Routes } from '../models/types/Routes';
+import { Routes } from '../enums/Routes';
 
 export const history = createHashHistory();
 
