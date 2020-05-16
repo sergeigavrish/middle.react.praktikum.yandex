@@ -1,9 +1,9 @@
-import { IAuthData } from '../models/interfaces/IAuthData';
+import { IAuthData } from '../interfaces/IAuthData';
 import { mockService } from '../helpers/MockState/MockService';
 import { setIsAuthorized, setUserData } from './sessionService';
 import { navigate } from '../helpers/history';
-import { Routes } from '../models/types/Routes';
-import { IUser } from '../models/interfaces/IUser';
+import { Routes } from '../enums/Routes';
+import { IUser } from '../interfaces/IUser';
 
 const handleResponse = (user: IUser) => {
   setIsAuthorized();

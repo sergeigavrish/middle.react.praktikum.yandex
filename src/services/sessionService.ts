@@ -1,4 +1,4 @@
-import { IUser } from "../models/interfaces/IUser";
+import { IUser } from '../interfaces/IUser';
 
 export const getIsAuthorized = (): boolean | null => {
   const data = sessionStorage.getItem('isAuthorized');
