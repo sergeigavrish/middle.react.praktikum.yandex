@@ -51,7 +51,10 @@
     "react/jsx-filename-extension": [
       1,
       { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
-    ]
+    ],
+    "no-useless-constructor": "off",
+    "no-empty-function": ["error", { "allow": ["constructors"] }],
+    "react/static-property-placement": "off"
   },
   "settings": {
     "import/resolver": {
