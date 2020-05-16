@@ -1,10 +1,10 @@
 import { mockService } from '../helpers/MockState/MockService';
 import { addServiceMessageToChatHistory } from '../helpers/utils';
-import { mapTextMessageDtoToTextMessage, maptMessageToTextMessageDto, maptTextMessageDtoToTextMessage } from '../helpers/mapperHelper';
-import { ITextMessage } from '../models/interfaces/IMessage';
+import { mapToChainedMessageList, maptMessageToTextMessageDto, mapTextMessageDtoToTextMessage } from '../helpers/mapperHelper';
+import { ITextMessage } from '../interfaces/IMessage';
 import { getUserData } from './sessionService';
-import { MessageList } from '../models/types/MessageList';
-import { IChatInfo } from '../models/interfaces/IChatInfo';
+import { MessageList } from '../types/MessageList';
+import { IChatInfo } from '../interfaces/IChatInfo';
 
 export const getChatList = (): Promise<IChatInfo[]> => {
   return mockService.getChatList();
@@ -12,9 +12,13 @@ export const getChatList = (): Promise<IChatInfo[]> => {
 
 export const getChatHistoryByChatId = (chatId: string): Promise<MessageList> => {
   return mockService.getChatHistoryByChatId(chatId)
-    .then((dtoList) => dtoList.map((dto) => maptTextMessageDtoToTextMessage(dto)))
+    .then((dtoList) => dtoList.map((dto) => mapTextMessageDtoToTextMessage(dto)))
     .then(addServiceMessageToChatHistory)
-    .then(mapTextMessageDtoToTextMessage);
+    .then(mapToChainedMessageList)
+    .catch((err) => {
+      console.error(err);
+      return [];
+    });
 };
 
 export const sendMessagetoChat = (chatId: string, content: string): Promise<ITextMessage> => {
@@ -22,7 +26,7 @@ export const sendMessagetoChat = (chatId: string, content: string): Promise<ITex
   if (user) {
     const dto = maptMessageToTextMessageDto(content, user);
     return mockService.sendMessagetoChat(chatId, dto)
-      .then((res) => maptTextMessageDtoToTextMessage(res));
+      .then((res) => mapTextMessageDtoToTextMessage(res));
   }
   return Promise.reject();
 };

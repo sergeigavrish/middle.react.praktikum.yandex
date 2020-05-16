@@ -1,4 +1,4 @@
-import { IUser } from '../../../models/interfaces/IUser';
+import { IUser } from '../../../interfaces/IUser';
 
 export interface IMockUser extends IUser {
   password?: string;

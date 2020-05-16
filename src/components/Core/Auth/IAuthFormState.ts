@@ -1,4 +1,4 @@
-import { IAuthData } from '../../../models/interfaces/IAuthData';
+import { IAuthData } from '../../../interfaces/IAuthData';
 
 export interface IAuthFormState extends IAuthData {
   login: string;

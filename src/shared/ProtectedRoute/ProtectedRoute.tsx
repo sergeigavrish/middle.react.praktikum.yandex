@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Route, RouteComponentProps, Redirect } from 'react-router-dom';
+import { Route, Redirect, RouteProps } from 'react-router-dom';
 
 import { IProtectedRouteProps } from './IProtectedRouteProps';
 
@@ -8,9 +8,9 @@ import { getIsAuthorized } from '../../services/sessionService';
 export const ProtectedRoute: FC<IProtectedRouteProps> = ({ component: Component, ...rest }: IProtectedRouteProps) => (
   <Route
     {...rest}
-    render={(props: RouteComponentProps) => (
+    render={(props: RouteProps) => (
       getIsAuthorized()
-        ? <Component {...props as any} />
+        ? <Component {...props} />
         : <Redirect to="/login" />
     )}
   />

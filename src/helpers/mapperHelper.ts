@@ -1,13 +1,13 @@
 import { v4 as uuid } from 'uuid';
 
-import { ITextMessageDto, ITextMessage } from '../models/interfaces/IMessage';
+import { ITextMessageDto, ITextMessage } from '../interfaces/IMessage';
 
-import { MessageTypes } from '../models/enums/MessageTypes';
-import { IUser } from '../models/interfaces/IUser';
-import { MessageList } from '../models/types/MessageList';
+import { MessageTypes } from '../enums/MessageTypes';
+import { IUser } from '../interfaces/IUser';
+import { MessageList } from '../types/MessageList';
 import { isTextMessageChained } from './utils';
 
-export const mapTextMessageDtoToTextMessage = (arr: MessageList): MessageList => {
+export const mapToChainedMessageList = (arr: MessageList): MessageList => {
   return arr.map((m, i) => {
     if (m.type === MessageTypes.Text) {
       const prevMessage = arr[i - 1];
@@ -27,7 +27,7 @@ export const maptMessageToTextMessageDto = (content: string, author: IUser): ITe
   };
 };
 
-export const maptTextMessageDtoToTextMessage = (dto: ITextMessageDto): ITextMessage => {
+export const mapTextMessageDtoToTextMessage = (dto: ITextMessageDto): ITextMessage => {
   return {
     content: dto.content,
     author: dto.author,

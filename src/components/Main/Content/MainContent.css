@@ -6,6 +6,8 @@
   position: relative;
   padding: var(--spacing-large) 0;
   background-color: var(--default-background-color);
+  display: flex;
+  flex-direction: column;
 }
 
 .content .close-chat-button {
@@ -13,12 +15,6 @@
   display: none;
   left: 0;
   margin-left: var(--spacing-large);
-  width: var(--spacing-double);
-  height: var(--spacing-double);
-  border-radius: 50%;
-  color: var(--default-background-color);
-  text-align: center;
-  background: #777777;
 }
 
 @media screen and (max-width: 500px) {

@@ -1,7 +1,7 @@
 import { IMockChatInfo } from './IMockChatInfo';
-import { IHashTable } from '../../../models/interfaces/IHashTable';
+import { IHashTable } from '../../../interfaces/IHashTable';
 import { IMockMessage } from './IMockMessage';
-import { IAuthData } from '../../../models/interfaces/IAuthData';
+import { IAuthData } from '../../../interfaces/IAuthData';
 import { IMockUser } from './IMockUser';
 
 export interface IStorage {
